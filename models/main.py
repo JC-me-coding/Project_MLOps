@@ -1,6 +1,5 @@
 import timm
 from omegaconf import OmegaConf
-from pytorch_lightning import Trainer
 import torch
 import torch.nn as nn
 from torchvision import datasets, transforms
@@ -11,14 +10,9 @@ import matplotlib.pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 from PIL import Image
 import pandas as pd
-import torchvision
-import numpy as np
 
 
-
-config = OmegaConf.load('config.yaml')
-
-root = "/kaggle/input/landscape-recognition-image-dataset-12k-images/Landscape Classification/Landscape Classification/Training Data/"
+root = "data/raw/landscapes/Training Data"
 
 def read_split_data(root, plot_image=False):
     filepaths = []

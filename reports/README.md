@@ -432,7 +432,19 @@ be installed with `pip install click markdown`.
 --- question 27 fill here ---
 
 ## Project description
-We will be using TIMM as our goal is image classification.
-We want to compare variations of ResNet and if time allows try more exotic backbones.
-We use a dataset for Landscape recognition from Kaggle, it consists of a total of 12000 images, including 5 classes: Coast, Desert, Forest, Glacier, Mountain. Currently the data is evenly distributed between the 5 classes.
-The main advantage of using TIMM is the changing of backbones that come with pretrained weights. We also plan to use some of the optimezers and augmentation strategies that the framework supplies. The framework also provides multi-GPU solutions for higher performance training so if we can get access to a multi-GPU system we would like to try that.
+We are doing a project on Computer Vision, therefore we will use the PyTorch Image Models (TIMM) from the pytorch exosystem.
+
+### Model
+We will build up a classification model, which applies different backbone architecture to extract image features. We intend to compare variations of ResNet (ResNet, ResNext, + Bag of Tricks, ...) and if time allows we will be axploring more exotic backbones.
+
+### Data
+We use a dataset for Landscape recognition from Kaggle ([Link to dataset](https://www.kaggle.com/datasets/utkarshsaxenadn/landscape-recognition-image-dataset-12k-images)). It consists of a total of 12000 images, including 5 classes: Coast, Desert, Forest, Glacier, Mountain. The classes is evenly distributed, so we have xxxx images for each class.
+
+ToDo: Show some sample images
+
+### TIMM
+TIMM provides a very large selection of model architecture, which come with pre-trained weights. We use these as backbone with our classification model and expect that it will be fairly easy to exchange the backbone architecture.
+We also plan to use some additional features, the framwork supplies.
+ * Augmentation Strategies
+ * Less common optimizers
+ * Methods to speed up the training such as mixed precision and DistributedDataParallel with multi-GPU

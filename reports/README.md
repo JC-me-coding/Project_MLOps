@@ -430,3 +430,9 @@ be installed with `pip install click markdown`.
 > Answer:
 
 --- question 27 fill here ---
+
+## Project description
+We will be using TIMM as our goal is image classification.
+We want to compare variations of ResNet and if time allows try more exotic backbones.
+We use a dataset for Landscape recognition from Kaggle, it consists of a total of 12000 images, including 5 classes: Coast, Desert, Forest, Glacier, Mountain. Currently the data is evenly distributed between the 5 classes.
+The main advantage of using TIMM is the changing of backbones that come with pretrained weights. We also plan to use some of the optimezers and augmentation strategies that the framework supplies. The framework also provides multi-GPU solutions for higher performance training so if we can get access to a multi-GPU system we would like to try that.

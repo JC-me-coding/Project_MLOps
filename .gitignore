@@ -87,6 +87,3 @@ target/
 
 # Mypy cache
 .mypy_cache/
-
-#data folder
-/data/landscape_classification/

@@ -12,6 +12,7 @@ COPY src/ src/
 COPY data/ data/
 
 WORKDIR /
+RUN pip3 install torch torchvision torchaudio
 RUN pip install -r requirements.txt --no-cache-dir
 
 ENTRYPOINT ["python", "-u", "src/models/train_model.py"]

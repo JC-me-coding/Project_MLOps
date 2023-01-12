@@ -6,7 +6,7 @@ import numpy as np
 
 
 def predict_input(model_weights, image):
-  image = cv2.resize(image,[225,225]).astype(np.float32)
+  image = cv2.resize(image,[224,224]).astype(np.float32)
   image = torch.from_numpy(image)
   image = image.unsqueeze(0).permute(0,3,1,2)
   config = OmegaConf.load('src/model_config.yaml')

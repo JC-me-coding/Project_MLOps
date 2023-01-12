@@ -113,4 +113,4 @@ if __name__ == '__main__':
             val_loss, val_accuracy = val_step(net, loss_function, valid_loader, device, epoch)
             if val_accuracy > best_val_acc:
                 best_val_acc = val_accuracy
-                torch.save(net.state_dict(), f'./models/model_{epoch}.pth')
+                torch.save(net.state_dict(), f'./models/model_best.pth')

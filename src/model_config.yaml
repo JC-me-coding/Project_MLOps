@@ -6,6 +6,7 @@ data:
   location: data #Location of data folder
   augmentation: null # Options 
   batch_size: 32
+  classes: ['Coast', 'Desert', 'Forest', 'Glacier', 'Mountain']
 
 hyperparameters:
   learning_rate: 1e-4 #learning rate

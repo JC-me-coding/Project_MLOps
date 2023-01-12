@@ -25,5 +25,5 @@ reproducability:
 
 wandb: 
   project: landscapes
-  entity: mlops_team19
+  entity: dtumlops-group19
   

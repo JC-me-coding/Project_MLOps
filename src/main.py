@@ -19,6 +19,7 @@ def train_step(net, loss_function, optimizer, data_loader, device, epoch):
     optimizer.zero_grad()
     train_bar = tqdm(data_loader, file=sys.stdout, colour='red')
     for step, data in enumerate(train_bar):
+        iter = epoch * len(data_loader) + step
         images, labels = data
         sample_num += images.shape[0]
         images, labels = images.to(device), labels.to(device)
@@ -32,11 +33,9 @@ def train_step(net, loss_function, optimizer, data_loader, device, epoch):
         loss_step = loss_sum / (step + 1)
         acc_step = acc_sum / sample_num
         train_bar.desc = "[train epoch {}] loss: {:.3f}, acc: {:.3f}".format(epoch, loss_step, acc_step)
-        #wandb.log({"train/loss": loss_step})
-        #wandb.log({"train/acc": acc_step})
+        wandb.log({"train/loss": loss_step})
+        wandb.log({"train/acc": acc_step})
     
-    wandb.log({"epoch/train/loss": loss_step})
-    wandb.log({"epoch/train/acc": acc_step})
     return loss_sum / (step + 1), acc_sum / sample_num
         
         
@@ -60,10 +59,8 @@ def val_step(net, loss_function, data_loader, device, epoch):
 
         # Logging
         val_bar.desc = "[valid epoch {}] loss: {:.3f}, acc: {:.3f}".format(epoch, loss_step, acc_step)
-        #wandb.log({"val/loss": loss_step})
-        #wandb.log({"val/acc": acc_step})
-    wandb.log({"epoch/test/loss": loss_step})
-    wandb.log({"epoch/test/acc": acc_step})
+    wandb.log({"val/loss": loss_step}, step_metric="epoch")
+    wandb.log({"val/acc": acc_step}, step_metric="epoch")
         
     return loss_sum / (step + 1), acc_sum / sample_num
 
@@ -109,6 +106,7 @@ if __name__ == '__main__':
     ############# TRAINING #############
     best_val_acc = 0
     for epoch in range(num_epochs):
+        wandb.log({"epoch": epoch}, step=epoch*len(train_loader))
         train_loss, train_accuracy = train_step(net, loss_function, optimizer, train_loader, device, epoch)
 
         if epoch % val_interval == 0:

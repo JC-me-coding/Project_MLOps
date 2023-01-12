@@ -12,6 +12,6 @@ COPY src/ src/
 COPY data/ data/
 
 WORKDIR /
-RUN pip install -r core_requirements.txt --no-cache-dir
+RUN pip install -r requirements.txt --no-cache-dir
 
-ENTRYPOINT ["python", "-u", "src/main.py"]
+ENTRYPOINT ["python", "-u", "src/models/train_model.py"]

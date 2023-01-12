@@ -6,10 +6,12 @@ import sys
 from tqdm import tqdm
 from torch.utils.data import DataLoader
 import wandb
-from src.model import make_model
-from src.data.dataloader import load_data
-from src.optimizer import make_optimizer
-from src.losses import make_loss_func
+import sys
+sys.path.append("../src")
+from model import make_model
+from data.dataloader import load_data
+from optimizer import make_optimizer
+from losses import make_loss_func
 
 
 def train_step(net, loss_function, optimizer, data_loader, device, epoch):

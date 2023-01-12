@@ -1,0 +1,9 @@
+UCI_DATA_URL = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00447/data.zip'
+
+## Make Dataset
+data: requirements
+    @echo ">>> Downloading data from UCI."
+    curl -o data/raw/data.zip $(UCI_DATA_URL)
+    @echo ">>> Unzipping."
+    unzip data/raw/data.zip -d data/raw
+    $(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed

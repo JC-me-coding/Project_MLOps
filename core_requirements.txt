@@ -1,18 +1,11 @@
-#pipreqs core requirements
 click
 dvc
 dvc[gdrive]
 omegaconf
 python-dotenv
 PyYAML
-timm
 torch
 torchvision
 tqdm
 wandb
-
-#external requirements
-flake8
-black
-isort
-mypy
+timm

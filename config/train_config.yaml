@@ -1,11 +1,11 @@
 model:
-  backbone: resnet18 #Options: resnet18, resnet34, resnet50, etc..
+  backbone: resnet34 #Options: resnet18, resnet50, etc..
   pretrained: True #Options: True, False
 
 data:
   location: data #Location of data folder
   augmentation: null # Options 
-  batch_size: 8
+  batch_size: 32
   classes: ['Coast', 'Desert', 'Forest', 'Glacier', 'Mountain']
 
 hyperparameters:
@@ -13,7 +13,7 @@ hyperparameters:
   weight_decay: 1e-5
 
 training:
-  epochs: 10
+  epochs: 1
   optimizer: adam #Options adam, adamW, ...
   scheduler: multisteplr #Options: StepLR, MultiStepLR
   step: 20

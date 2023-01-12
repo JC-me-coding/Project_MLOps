@@ -61,8 +61,8 @@ def val_step(net, loss_function, data_loader, device, epoch):
 
         # Logging
         val_bar.desc = "[valid epoch {}] loss: {:.3f}, acc: {:.3f}".format(epoch, loss_step, acc_step)
-    wandb.log({"val/loss": loss_step}, step_metric="epoch")
-    wandb.log({"val/acc": acc_step}, step_metric="epoch")
+    wandb.log({"val/loss": loss_step}, step=epoch)
+    wandb.log({"val/acc": acc_step}, step=epoch)
         
     return loss_sum / (step + 1), acc_sum / sample_num
 

@@ -1,0 +1,29 @@
+model:
+  backbone: resnet34 #Options: resnet18, resnet50, etc..
+  pretrained: True #Options: True, False
+
+data:
+  location: data #Location of data folder
+  augmentation: null # Options 
+  batch_size: 32
+
+hyperparameters:
+  learning_rate: 1e-4 #learning rate
+  weight_decay: 1e-5
+
+training:
+  epochs: 10
+  optimizer: adam #Options adam, adamW, ...
+  scheduler: multisteplr #Options: StepLR, MultiStepLR
+  step: 20
+  early_stop: False #Whether to implement early stop in case lr is not increasing
+  val_interval: 5
+  loss_fun: "cross_entropy"
+
+reproducability:
+  seed: 19 #19 for team19
+
+wandb: 
+  project: landscapes
+  entity: dtumlops-group19
+  

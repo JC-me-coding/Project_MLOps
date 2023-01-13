@@ -1,5 +1,5 @@
 
-FROM python:3.9.1-slim-buster
+FROM  nvcr.io/nvidia/pytorch:22.07-py3
 
 # install python
 RUN apt update && \

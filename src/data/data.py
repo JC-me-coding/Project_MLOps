@@ -12,12 +12,22 @@ def extract_zip(input_filepath, output_filepath):
 
 
 def dvc_pull():
-    print("dvc pull to get latest data...")
     repo = Repo(".")
     repo.pull()
 
+def dvc_status():
+    repo = Repo(".")
+    return repo.status()
+
 
 if __name__ == "__main__":
-    dvc_pull()
+    #print(dvc_status())
     root = os.getcwd()
-    extract_zip(f"{root}/data/raw/landscapes.zip", f"{root}/data/processed/")
+    if len(dvc_status()) != 0:
+        print("Data is not up to date, pulling data")
+        dvc_pull()
+        extract_zip(f"{root}/data/raw/landscapes.zip", f"{root}/data/processed/")
+    else:
+        print("Data is up to date")
+
+

@@ -32,7 +32,7 @@ make_requirements:
 
 ## Make Dataset
 data: requirements
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
+	$(PYTHON_INTERPRETER) src/data/data.py
 
 ## Delete all compiled Python files
 clean:

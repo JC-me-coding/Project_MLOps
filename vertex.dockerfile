@@ -10,14 +10,11 @@ RUN apt-get -y update
 RUN apt-get -y install git
 
 #download repo
-RUN git clone -b gcloud_dockerfiles https://github.com/JC-me-coding/Project_MLOps/ /Project_MLOps
+RUN git clone https://github.com/JC-me-coding/Project_MLOps/ /Project_MLOps
 
-
-#COPY core_requirements.txt requirements.txt
-#COPY setup.py setup.py
-#COPY src/ src/
 WORKDIR /
-RUN pip install -r /Project_MLOps/requirements.txt --no-cache-dir
+RUN pip install -r /Project_MLOps/core_requirements.txt --no-cache-dir
+RUN make data
 
 #COPY dummy.py dummy.py
-ENTRYPOINT ["python", "-u", "Project_MLOps/dummy.py"]
+ENTRYPOINT ["python", "-u", "Project_MLOps/src.py"]

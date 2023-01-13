@@ -88,8 +88,8 @@ if __name__ == '__main__':
     root = "data/processed/landscapes"
     assert os.path.exists(root), "Download and extract the data first, using the script in src/data/data.py"
     
-    train_loader = load_data(root, split="train", batch_size = batch_size)
-    valid_loader = load_data(root, split="val", batch_size = 1)
+    train_loader = load_data(root, "train", batch_size, config.data)
+    valid_loader = load_data(root, "val", batch_size, config.data)
     
     ############# MODEL #############
     device = 'cuda' if torch.cuda.is_available() else 'cpu'

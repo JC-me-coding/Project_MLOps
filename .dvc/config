@@ -1,6 +1,5 @@
 [core]
     remote = remote_storage
-['remote "storage"']
-    url = gdrive://1zoWfJmud7oZ1pLf0FpEC8ioOCdc3hvYz
+    hardlink_lock = true
 ['remote "remote_storage"']
-    url = gs://landscapes-team19/
+    url = gs://dtumlops_landsacapes/

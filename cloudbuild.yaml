@@ -3,7 +3,7 @@ steps:
     args: ['build', '-f', 'trainer.dockerfile', '-t', 'gcr.io/spherical-park-374308/landscape_training_cpu', '.']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/spherical-park-374308/landscape_training_cpu']
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-f', 'trainer_gpu.dockerfile', '-t', 'gcr.io/spherical-park-374308/landscape_training_gpu', '.']
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/spherical-park-374308/landscape_training_gpu']
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['build', '-f', 'trainer_gpu.dockerfile', '-t', 'gcr.io/spherical-park-374308/landscape_training_gpu', '.']
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['push', 'gcr.io/spherical-park-374308/landscape_training_gpu']

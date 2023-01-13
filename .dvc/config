@@ -3,4 +3,4 @@
 ['remote "storage"']
     url = gdrive://1zoWfJmud7oZ1pLf0FpEC8ioOCdc3hvYz
 ['remote "remote_storage"']
-    url = gs://dtumlops_landsacapes/
+    url = gs://landscapes-team19/

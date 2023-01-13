@@ -9,6 +9,7 @@ RUN apt update && \
 COPY core_requirements.txt requirements.txt
 COPY setup.py setup.py
 COPY src/ src/
+COPY config/ config/
 
 WORKDIR /
 RUN pip install -r requirements.txt --no-cache-dir

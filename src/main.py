@@ -127,7 +127,7 @@ def train_one_sweep():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser("Train parser")
-    parser.add_argument("-c", "--config", type=str, default=None)
+    parser.add_argument("-c", "--config", type=str, default="config/train_config.yaml")
     args = parser.parse_args()
     config = OmegaConf.load(args.config)
     if config.hyperparameters.sweep_config == "":

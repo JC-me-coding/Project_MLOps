@@ -10,7 +10,7 @@ RUN apt-get -y update
 RUN apt-get -y install git
 
 #download repo
-RUN git clone https://github.com/JC-me-coding/Project_MLOps/ /Project_MLOps
+RUN git clone -b docker_update https://github.com/JC-me-coding/Project_MLOps/ /Project_MLOps
 
 WORKDIR /Project_MLOps
 RUN pip install -r core_requirements.txt --no-cache-dir

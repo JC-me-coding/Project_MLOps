@@ -3,4 +3,4 @@ workerPoolSpecs:
       machineType: n1-highmem-2
    replicaCount: 1
    containerSpec:
-    imageUri: gcr.io/liquid-champion-374311/torchtsestgpu
+    imageUri: gcr.io/liquid-champion-374311/dockerupdate

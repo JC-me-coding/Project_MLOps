@@ -29,4 +29,5 @@ reproducability:
 wandb: 
   project: landscapes
   entity: dtumlops-group19
+  key: 26dbda488d7cc0a7ac5d3e7f064825ab1550a838
   

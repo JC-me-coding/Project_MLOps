@@ -12,9 +12,9 @@ RUN apt-get -y install git
 #download repo
 RUN git clone https://github.com/JC-me-coding/Project_MLOps/ /Project_MLOps
 
-WORKDIR /
-RUN pip install -r /Project_MLOps/core_requirements.txt --no-cache-dir
+WORKDIR /Project_MLOps
+RUN pip install -r core_requirements.txt --no-cache-dir
 RUN make data
 
 #COPY dummy.py dummy.py
-ENTRYPOINT ["python", "-u", "Project_MLOps/src.py"]
+ENTRYPOINT ["python", "-u", "/src/main.py"]

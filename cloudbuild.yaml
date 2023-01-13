@@ -1,11 +1,9 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-f', 'trainer.dockerfile', '-t', 'gcr.io/deductive-state-374308/landscape_training_cpu', '.']
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'gcr.io/spherical-park-374308/landscape_training_cpu', 'gcr.io/spherical-park-374308/landscape_training_cpu']
+    args: ['build', '-f', 'trainer.dockerfile', '-t', 'gcr.io/spherical-park-374308/landscape_training_cpu', '.']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/spherical-park-374308/landscape_training_cpu']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-f', 'trainer_gpu.dockerfile', '-t', 'gcr.io/deductive-state-374308/landscape_training_gpu', '.']
+    args: ['build', '-f', 'trainer_gpu.dockerfile', '-t', 'gcr.io/spherical-park-374308/landscape_training_gpu', '.']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/spherical-park-374308/landscape_training_gpu']

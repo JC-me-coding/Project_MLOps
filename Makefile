@@ -27,11 +27,11 @@ requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -r core_requirements.txt
 
 ## Make requirements
-make_requirements: 
+make_requirements: requirements
 	pipreqs . --force
 
 ## Make Dataset
-data: requirements
+data: 
 	$(PYTHON_INTERPRETER) src/data/data.py
 
 ## Delete all compiled Python files

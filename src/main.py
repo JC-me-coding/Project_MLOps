@@ -109,7 +109,8 @@ def training(config):
     ############# OPTIMIZER #############
     optimizer = make_optimizer(optimizer, net, config)
     #print(optimizer)
-    WABND_API_KEY = config.wandb.key
+    #WABND_API_KEY = config.wandb.key
+    wandb.login(key=config.wandb.key)
     wandb.init(project=config.wandb.project, entity=config.wandb.entity)
     wandb.config = OmegaConf.to_container(config, resolve=True, throw_on_missing=True)
     #Magic

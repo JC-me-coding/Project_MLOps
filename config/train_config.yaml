@@ -1,24 +1,26 @@
 model:
-  backbone: resnet34 #Options: resnet18, resnet50, etc..
+  backbone: resnet18 #Options: resnet18, resnet34, resnet50, etc..
   pretrained: True #Options: True, False
 
 data:
   location: data #Location of data folder
   augmentation: null # Options 
-  batch_size: 32
+  batch_size: 8
+  input_size: 224
   classes: ['Coast', 'Desert', 'Forest', 'Glacier', 'Mountain']
 
 hyperparameters:
   learning_rate: 1e-4 #learning rate
   weight_decay: 1e-5
+  sweep_config: "" #"config/sweep_config.yaml"
 
 training:
-  epochs: 1
+  epochs: 5
   optimizer: adam #Options adam, adamW, ...
   scheduler: multisteplr #Options: StepLR, MultiStepLR
   step: 20
   early_stop: False #Whether to implement early stop in case lr is not increasing
-  val_interval: 5
+  val_interval: 1
   loss_fun: "cross_entropy"
 
 reproducability:

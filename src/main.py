@@ -6,10 +6,12 @@ import sys
 from tqdm import tqdm
 from torch.utils.data import DataLoader
 import wandb
-from src.model import make_model
-from src.data.dataloader import load_data
-from src.optimizer import make_optimizer
-from src.losses import make_loss_func
+import sys
+sys.path.append("../src")
+from model import make_model
+from data.dataloader import load_data
+from optimizer import make_optimizer
+from losses import make_loss_func
 
 
 def train_step(net, loss_function, optimizer, data_loader, device, epoch):
@@ -59,8 +61,8 @@ def val_step(net, loss_function, data_loader, device, epoch):
 
         # Logging
         val_bar.desc = "[valid epoch {}] loss: {:.3f}, acc: {:.3f}".format(epoch, loss_step, acc_step)
-    wandb.log({"val/loss": loss_step}, step_metric="epoch")
-    wandb.log({"val/acc": acc_step}, step_metric="epoch")
+    wandb.log({"val/loss": loss_step}, step=epoch)
+    wandb.log({"val/acc": acc_step}, step=epoch)
         
     return loss_sum / (step + 1), acc_sum / sample_num
 

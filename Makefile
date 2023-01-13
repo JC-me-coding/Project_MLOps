@@ -22,8 +22,13 @@ endif
 
 ## Install Python Dependencies
 requirements: test_environment
+	$(PYTHON_INTERPRETER) -m pip install --upgrade pip
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
-	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
+	$(PYTHON_INTERPRETER) -m pip install -r core_requirements.txt
+
+## Make requirements
+make_requirements: 
+	pipreqs . --force
 
 ## Make Dataset
 data: requirements
@@ -37,6 +42,10 @@ clean:
 ## Lint using flake8
 lint:
 	flake8 src
+
+# Train 
+train: requirements
+	$(PYTHON_INTERPRETER) src/main.py --config config/train_config.yaml
 
 ## Upload Data to S3
 sync_data_to_s3:

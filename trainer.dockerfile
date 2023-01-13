@@ -11,7 +11,7 @@ RUN apt-get -y update
 RUN apt-get -y install git
 
 #download repo
-RUN git clone https://github.com/JC-me-coding/Project_MLOps/ /Project_MLOps
+RUN git clone -b gcloud_dockerfiles https://github.com/JC-me-coding/Project_MLOps/ /Project_MLOps
 
 
 #COPY core_requirements.txt requirements.txt

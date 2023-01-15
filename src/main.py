@@ -14,9 +14,7 @@ from optimizer import make_optimizer
 from losses import make_loss_func
 import yaml
 import argparse
-from zipfile import ZipFile, ZipInfo
 
-from data.data import dvc_pull, dvc_status, extract_zip
 
 global config
 
@@ -89,13 +87,6 @@ def training(config):
     
     ############# DATA #############
     root = os.getcwd()
-
-    if len(dvc_status()) != 0:
-        print("Data is not up to date, pulling data")
-        dvc_pull()
-        extract_zip(f"{root}/data/raw/landscapes.zip", f"{root}/data/processed/")
-    else:
-        print("Data is up to date")
 
     train_loader = load_data(f"{root}/data/processed/landscapes", "train", batch_size, config.data)
     valid_loader = load_data(f"{root}/data/processed/landscapes", "val", batch_size, config.data)

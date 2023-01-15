@@ -1,89 +1,43 @@
-# -*- coding: utf-8 -*-
-import click
-import logging
-from pathlib import Path
-from dotenv import find_dotenv, load_dotenv
-
-import torch
-import torchvision.transforms as transforms
-import torchvision.datasets as datasets
-from torch.utils.data import DataLoader
+import zipfile
+import os
+from dvc.repo import Repo
+import glob
 
 
-@click.command()
-@click.argument("input_filepath", type=click.Path(exists=True))
-@click.argument("output_filepath", type=click.Path())
-def main(input_filepath, output_filepath):
+def extract_zip(input_filepath, output_filepath):
     """Runs data processing scripts to turn raw data from (../raw) into
     cleaned data ready to be analyzed (saved in ../processed).
     """
-    logger = logging.getLogger(__name__)
-    logger.info("making final data set from raw data")
+    with zipfile.ZipFile(input_filepath, "r") as zip_ref:
+        zip_ref.extractall(output_filepath)
 
-    torch.manual_seed(0)
-    batch_size = 64
 
-    # training transforms
-    train_transform = transforms.Compose(
-        [
-            # transforms.Resize((x,y)), #TODO??
-            # transforms.RandomHorizontalFlip(p=0.1),
-            # transforms.RandomVerticalFlip(p=0.1),
-            # transforms.GaussianBlur(kernel_size=(5, 9), sigma=(0.1, 5)),
-            # transforms.RandomRotation(degrees=(10, 20)),
-            transforms.ToTensor(),
-            transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
-        ]
-    )
+def dvc_pull():
+    repo = Repo(".")
+    repo.pull()
 
-    # validation transforms
-    valid_transform = transforms.Compose(
-        [
-            # transforms.Resize((x,y)), #TODO??
-            transforms.ToTensor(),
-            transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
-        ]
-    )
-
-    # training dataset
-    train_dataset = datasets.ImageFolder(
-        root=input_filepath + "/Training Data", transform=train_transform
-    )
-    # validation dataset
-    valid_dataset = datasets.ImageFolder(
-        root=input_filepath + "/Validation Data", transform=valid_transform
-    )
-    # training data loaders
-    train_loader = DataLoader(
-        train_dataset,
-        batch_size=batch_size,
-        shuffle=True,
-        num_workers=4,
-        pin_memory=True,
-    )
-    # validation data loaders
-    valid_loader = DataLoader(
-        valid_dataset,
-        batch_size=batch_size,
-        shuffle=False,
-        num_workers=4,
-        pin_memory=True,
-    )
-
-    # save dataloaders
-    torch.save(train_loader, output_filepath + "/train_dl.pt")
-    torch.save(valid_loader, output_filepath + "/validation_dl.pt")
+def dvc_status():
+    repo = Repo(".")
+    return repo.status()
 
 
 if __name__ == "__main__":
-    log_fmt = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
-
-    # not used in this stub but often useful for finding various files
-    project_dir = Path(__file__).resolve().parents[2]
-
-    # find .env automagically by walking up directories until it's found,
-    # then load up the .env entries as environment variables
-    load_dotenv(find_dotenv())
-
-    main()
+    # Is it a git repo? Check if .github folder exists
+    root = os.getcwd()
+    if os.path.exists(".github"):
+        if len(dvc_status()) != 0:
+            print("Data is not up to date, pulling data")
+            dvc_pull()
+        else:
+            print("Data is up to date")
+        
+        # check if extracted data already exists
+        if not os.path.exists(f"{root}/data/processed/landscapes"):
+            extract_zip(f"{root}/data/raw/landscapes.zip", f"{root}/data/processed/")
+    # Are we on a GCP instance, where buckets is mounted
+    elif os.path.exists("/gcs"):
+        os.makedirs(f"{root}/data/processed/", exist_ok=True)
+        dvc_folder = "/gcs/landscapes-team19"
+        list_of_files = glob.glob(f'{dvc_folder}/*/*') # * means all if need specific format then *.csv
+        latest_file = max(list_of_files, key=os.path.getctime)
+        extract_zip(latest_file, f"{root}/data/processed/")

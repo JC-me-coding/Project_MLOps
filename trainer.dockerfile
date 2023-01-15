@@ -7,11 +7,14 @@ RUN apt update && \
     apt clean && rm -rf /var/lib/apt/lists/*
 
 COPY core_requirements.txt requirements.txt
+RUN pip install -r requirements.txt --no-cache-dir
+
 COPY setup.py setup.py
 COPY src/ src/
 COPY config/ config/
+COPY scripts/ scripts/
+COPY Makefile Makefile
 
 WORKDIR /
-RUN pip install -r requirements.txt --no-cache-dir
 
-ENTRYPOINT ["python", "-u", "src/main.py"]
+ENTRYPOINT ["scripts/trainer.sh"]

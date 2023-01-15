@@ -1,5 +1,6 @@
 [core]
-    remote = remote_storage
-    hardlink_lock = true
+    remote = remote_storage_julia
 ['remote "remote_storage"']
     url = gs://dtumlops_landsacapes/
+['remote "remote_storage_julia"']
+    url = gs://landscapes-team19/

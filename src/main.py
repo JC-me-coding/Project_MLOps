@@ -100,8 +100,10 @@ def training(config):
     ############# OPTIMIZER #############
     optimizer = make_optimizer(optimizer, net, config)
     #print(optimizer)
-    wandb.init(project=config.wandb.project, entity=config.wandb.entity)
-    wandb.config = OmegaConf.to_container(config, resolve=True, throw_on_missing=True)
+    
+    wandb_config = OmegaConf.to_container(config, resolve=True, throw_on_missing=True)
+    wandb.init(project=config.wandb.project, entity=config.wandb.entity, config=wandb_config)
+   
     #Magic
     #wandb.watch(net, log_freq=100)
     

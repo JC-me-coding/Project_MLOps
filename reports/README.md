@@ -49,7 +49,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- 19 ---
+19
 
 ### Question 2
 > **Enter the study number for each member in the group**
@@ -60,7 +60,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 2 fill here ---
+s123540,ronjag,s183527,s222675,dimara
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
@@ -73,7 +73,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 3 fill here ---
+We used PyTorch Image Models (timm) in our project. The main functionality we used is the interchangeability of models using timm.create_model that requires only the model name, and number of classes in our data. We also used pretrained weights for all our models we tried. Additionally, we experimented with timm.randaugment augmentation strategy, which implements random augmentations from a list of augmentations that have previously worked well for Image tasks. Wehn training a model for a task where someone has no previous experience it is worth trying an augmentation stragegy such as tandaugment so that we can easily train a (hopefully) more robust model fast. Finally, 
 
 ## Coding environment
 

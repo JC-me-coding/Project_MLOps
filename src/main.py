@@ -14,8 +14,8 @@ from optimizer import make_optimizer
 from losses import make_loss_func
 import yaml
 import argparse
-
-
+import numpy as np
+import random
 global config
 
 
@@ -120,11 +120,13 @@ def training(config):
                 torch.save(net.state_dict(), f'./models/model_best.pth')
 
 def train_one_sweep():
+    
     with wandb.init():
         wb_config = wandb.config
         for k, v in wb_config.items():
-            config["hyperparameters"][k] = v
-        print(config.hyperparameters)
+            ks = k.split('.')
+            config[ks[0]][ks[1]] = v
+        print(config)
         training(config)
 
 if __name__ == '__main__':
@@ -132,11 +134,23 @@ if __name__ == '__main__':
     parser.add_argument("-c", "--config", type=str, default="config/train_config.yaml")
     args = parser.parse_args()
     config = OmegaConf.load(args.config)
+
+
+    if config.reproducability.apply:
+        seed = config.reproducability.seed
+        np.random.seed(seed)
+        random.seed(seed)
+        torch.manual_seed(seed)
+        torch.cuda.manual_seed(seed)
+        # When running on the CuDNN backend, two further options must be set
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
+    
     if config.hyperparameters.sweep_config == "":
         training(config)
     else:
         sweep_config = yaml.load(open(config.hyperparameters.sweep_config, "r"), Loader=yaml.FullLoader)
         sweep_id = wandb.sweep(sweep=sweep_config, project=f"MLOPsproject-Sweep", entity=config.wandb.entity)
-        wandb.agent(sweep_id, function=train_one_sweep, count=5)
+        wandb.agent(sweep_id, function=train_one_sweep, count=15)
 
  

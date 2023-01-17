@@ -10,9 +10,3 @@ torch
 torchvision
 tqdm
 wandb
-
-#external requirements
-flake8
-black
-isort
-mypy

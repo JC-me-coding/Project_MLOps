@@ -3,6 +3,12 @@ metric:
   name: val/loss
   goal: minimize
 parameters:
-  learning_rate:
+  hyperparameters.learning_rate:
     min: 0.0001
     max: 0.1
+  data.batch_size: 
+    values: [16, 32, 64, 128, 256]
+  training.optimizer:
+    values: ["adam", "adamW", "sgd"]
+  
+

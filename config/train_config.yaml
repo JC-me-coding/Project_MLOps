@@ -24,6 +24,7 @@ training:
   loss_fun: "cross_entropy"
 
 reproducability:
+  apply: True
   seed: 19 #19 for team19
 
 wandb: 

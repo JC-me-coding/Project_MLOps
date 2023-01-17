@@ -100,8 +100,8 @@ def training(config):
     ############# OPTIMIZER #############
     optimizer = make_optimizer(optimizer, net, config)
     #print(optimizer)
-    wandb.init(project=config.wandb.project, entity=config.wandb.entity)
-    wandb.config = OmegaConf.to_container(config, resolve=True, throw_on_missing=True)
+    wandb_config = OmegaConf.to_container(config, resolve=True, throw_on_missing=True)
+    wandb.init(project=config.wandb.project, entity=config.wandb.entity, config=wandb_config)
     #Magic
     #wandb.watch(net, log_freq=100)
     
@@ -115,7 +115,7 @@ def training(config):
             val_loss, val_accuracy = val_step(net, loss_function, valid_loader, device, epoch)
             if val_accuracy > best_val_acc:
                 best_val_acc = val_accuracy
-                torch.save(net.state_dict(), f'./models/model_best.pth')
+                torch.save(net.state_dict(), f'./models/{backbone}_{config.hyperparameters.learning_rate}.pth')
 
 def train_one_sweep():
     

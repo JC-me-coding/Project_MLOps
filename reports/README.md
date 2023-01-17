@@ -131,7 +131,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 7 fill here ---
+4 tests in total. We added tests for the dataloader, testing whether creating training and validation datasets returns the correct dataset sizes, batch sizes and image dimensions. 
 
 ### Question 8
 

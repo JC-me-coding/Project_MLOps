@@ -2,6 +2,7 @@
 click
 dvc
 dvc[gdrive]
+dvc[gs]
 omegaconf
 python-dotenv
 PyYAML
@@ -11,8 +12,3 @@ torchvision
 tqdm
 wandb
 
-#external requirements
-flake8
-black
-isort
-mypy

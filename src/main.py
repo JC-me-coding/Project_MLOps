@@ -13,9 +13,9 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 from src.data.dataloader import load_data
-from src.losses import make_loss_func
-from src.model import make_model
-from src.optimizer import make_optimizer
+from src.ml_utils.losses import make_loss_func
+from src.models.model import make_model
+from src.ml_utils.optimizer import make_optimizer
 
 global config
 from timm.optim.sgdp import SGDP
@@ -101,7 +101,7 @@ def training(config):
     ############# LOSS FUNCTION #############
     loss_function = make_loss_func(loss_fun)
     ############# OPTIMIZER #############
-    
+  
     if optimizer == "SGDP":
         optimizer = SGDP(net.parameters(),lr=lr)#, net.parameters(), lr=lr, weight_decay=weight_decay)
     else:
@@ -109,6 +109,7 @@ def training(config):
  
     wandb_config = OmegaConf.to_container(config, resolve=True, throw_on_missing=True)
     wandb.init(project=config.wandb.project, entity=config.wandb.entity, config=wandb_config)
+    
     #Magic
     #wandb.watch(net, log_freq=100)
     

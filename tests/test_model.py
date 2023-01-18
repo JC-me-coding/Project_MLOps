@@ -2,9 +2,9 @@ import os.path
 import torch
 from omegaconf import OmegaConf
 
-
 from src.data.dataloader import load_data
 from src.models.model import make_model
+
 
 root = "data/processed/landscapes"
 config = OmegaConf.load('config/train_config.yaml')

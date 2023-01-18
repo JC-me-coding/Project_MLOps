@@ -1,13 +1,13 @@
 import os.path
 import torch
 import wandb
-from omegaconf import OmegaConf
+from src.models.model import OmegaConf
 
 from src.data.dataloader import load_data
-from src.losses import make_loss_func
+from src.ml_utils.losses import make_loss_func
 from src.main import train_step, val_step
 from src.models.model import make_model
-from src.optimizer import make_optimizer
+from src.ml_utils.optimizer import make_optimizer
 
 root = "data/processed/landscapes"
 config = OmegaConf.load('config/train_config.yaml')

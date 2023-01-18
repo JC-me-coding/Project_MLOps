@@ -211,7 +211,8 @@ C,S
 >
 > Answer:
 
-D
+We used configuration files. We structure the file so that it hosts model, data, hyperparameters, training, reproducability and project parameters. To run the code, one needs to just run the script (e.g. 'python main.py') as the config is loaded inside the script. In case we want to specify the config from the command line we could add an optional argparser.
+
 
 ### Question 13
 
@@ -226,7 +227,9 @@ D
 >
 > Answer:
 
-R
+We used the config file. Whenever an experiment runs the following happens: The config file gets logged into the wandb run. That way the information is secured. To run our experiments with the same config file, one would have to find the corresponding run on wandb, navigate into the run overview and copy the run path (e.g 'dtumlops-group19/backbones/3nm3vv75'). Then by running the script with two arguments, one for the run path and one for the name for the generated config.
+
+`python scripts/get_wandb_config.py <run_path> <config_path>'
 
 ### Question 14
 

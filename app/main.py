@@ -17,8 +17,7 @@ async def cv_model(data: UploadFile = File(...)):
             image.write(content)
             image.close()
 
-         # img = cv2.imread("image.jpg")
-         img = np.array(Image.open("image.jpg"))
+         img = Image.open("image.jpg")
 
          prediction = predict_input("models/model_best.pth",img)
 

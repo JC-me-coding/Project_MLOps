@@ -24,7 +24,7 @@ endif
 requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install --upgrade pip
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
-	$(PYTHON_INTERPRETER) -m pip install -r core_requirements.txt
+	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
 ## Make requirements
 make_requirements: requirements

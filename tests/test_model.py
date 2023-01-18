@@ -2,7 +2,7 @@ import torch
 from omegaconf import OmegaConf
 
 from src.data.dataloader import load_data
-from src.model import make_model
+from src.models.model import make_model
 
 
 # Test the shape of the output from the model

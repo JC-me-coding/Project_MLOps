@@ -18,9 +18,8 @@ def test_training():
     optimizer = config.training.optimizer
     epoch = 1
 
-    valid_loader = load_data(root, split="val", batch_size=1)
-    train_loader = load_data(root, split="train", batch_size=batch_size)
-
+    train_loader = load_data(root, "train", batch_size, config.data)
+    valid_loader = load_data(root, "val", 1, config.data)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     model = make_model(backbone, pretrained=True).to(device)
 

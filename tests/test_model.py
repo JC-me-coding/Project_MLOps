@@ -11,8 +11,7 @@ def test_model():
     config = OmegaConf.load('config/train_config.yaml')
     backbone = config.model.backbone
 
-    valid_loader = load_data(root, split="val", batch_size=1)
-
+    valid_loader = load_data(root, "val", 1, config.data)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     model = make_model(backbone, pretrained=True).to(device)
 

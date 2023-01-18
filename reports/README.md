@@ -131,7 +131,16 @@ LATER - Dimitris
 >
 > Answer:
 
-4 tests in total. We added tests for the dataloader, testing whether creating training and validation datasets returns the correct dataset sizes, batch sizes and image dimensions. 
+We implemented 9 tests in total. 
+We added a test for our dataloader and dataset, asserting that we were receiving 
+the correct number of samples for the training and validation sets. 
+As well as asserting that the dataloader was generating the correct batch sizes and that the images were of 
+the correct dimensions.
+
+We also added a test for training of our model, where we tested one training- and one validation step, asserting that the loss is
+returning a nonzero number.
+
+Then we also tested our model, asserting that the output is of the expected shape.
 
 ### Question 8
 
@@ -146,7 +155,25 @@ LATER - Dimitris
 >
 > Answer:
 
-C,S
+By applying the 9 tests, an overall code coverage of 77% was obtained. 
+This is a relatively high coverage, indicating that a decent percentage of the code
+is being tested. 
+
+For the 'main.py' we only obtain a coverage of 54%, as we are not testing the 
+functions that does parameter sweeping for wandb and for the function that 
+executes the entire training loop, we are only testing for one training step as running the entire training loop
+would be too time-consuming.
+
+For the 'optimizer.py' we have a coverage of 80%, even though we test the only function.
+
+For the rest of the scripts we obtain a coverage of 100%.
+
+A high coverage does not mean that the code is free from errors, 
+and it should not be used as a measure of success alone. 
+A reason for this is the code coverage not evaluating on the quality of the tests,
+meaning that there are many possibilities of errors that are simply not being tested for.
+
+
 
 ### Question 9
 
@@ -192,7 +219,25 @@ J
 >
 > Answer:
 
-C,S
+For this project, it was chosen to have three different workflow files. 
+One is the 'flake.yml' file, which covers the linting, another is 'isort.yml', 
+which checks that our imports are in the correct order. 
+The third file is the 'tests.yml', which covers the unit testing.
+The files mentioned above are run through Github actions whenever a 'push' occurs.
+In addition to this, the unit tests are also run locally, in order to check the 
+data that is not available in Github. 
+
+We have chosen to only do the testing in Ubuntu, as we did not find it relevant
+to test the other two files since the servers the code will be run on, will in all 
+likelihood have a Linux distro. We could have also tested on Windows or MacOS, but
+as mentioned we did not find it relevant in this case.
+
+As for the Python, we only tested Python 3.8. Again, we could have chosen
+a different option, but it would be somehow arbitrary.
+
+We did not make use of caching for our Python requirements. 
+If doing so, running our tests on Github probably would have taken less time, as
+there would not be a need for downloading the dependencies each time.
 
 ## Running code and tracking experiments
 
@@ -433,21 +478,3 @@ ALL TEAM
 > Answer:
 
 ALL TEAM
-
-## Project description
-We are doing a project on Computer Vision, therefore we will use the PyTorch Image Models (TIMM) from the pytorch exosystem.
-
-### Model
-We will build up a classification model, which applies different backbone architecture to extract image features. We intend to compare variations of ResNet (ResNet, ResNext, + Bag of Tricks, ...) and if time allows we will be axploring more exotic backbones.
-
-### Data
-We use a dataset for Landscape recognition from Kaggle ([Link to dataset](https://www.kaggle.com/datasets/utkarshsaxenadn/landscape-recognition-image-dataset-12k-images)). It consists of a total of 12000 images, including 5 classes: Coast, Desert, Forest, Glacier, Mountain. The classes is evenly distributed, so we have xxxx images for each class.
-
-ToDo: Show some sample images
-
-### TIMM
-TIMM provides a very large selection of model architecture, which come with pre-trained weights. We use these as backbone with our classification model and expect that it will be fairly easy to exchange the backbone architecture.
-We also plan to use some additional features, the framwork supplies.
- * Augmentation Strategies
- * Less common optimizers
- * Methods to speed up the training such as mixed precision and DistributedDataParallel with multi-GPU

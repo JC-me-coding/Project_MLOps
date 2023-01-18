@@ -60,7 +60,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
-s123540,ronjag,s183527,s222675,dimara
+s123540, s183527, s222675, ronjag, dimara
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
@@ -73,7 +73,7 @@ s123540,ronjag,s183527,s222675,dimara
 >
 > Answer:
 
-We used PyTorch Image Models (timm) in our project. The main functionality we used is the interchangeability of models using timm.create_model that requires only the model name, and number of classes in our data. We also used pretrained weights for all our models we tried. Additionally, we experimented with timm.randaugment augmentation strategy, which implements random augmentations from a list of augmentations that have previously worked well for Image tasks. Wehn training a model for a task where someone has no previous experience it is worth trying an augmentation stragegy such as tandaugment so that we can easily train a (hopefully) more robust model fast. Finally, 
+We used PyTorch Image Models (timm) as the main framework for our project. The functionality from which we benefited most is the interchangeability of models using timm.create_model() that only requires the model name and number of classes to be precicted in our data. We were able to choose between a vast amount of model variations that come with pretrained weights and makes training converge faster on our data. Additionally, we experimented with timm.randaugment() augmentation strategy, which implements random augmentations from a list of augmentations that have previously worked well for Image tasks. Finally, we experimented training with a built-in optimization strategy (timm.optim.SGDP). 
 
 ## Coding environment
 
@@ -92,7 +92,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 4 fill here ---
+We used conda and pip for managing our environment dependencies. The list of dependencies was auto-generated using pipreqs package which looks into our code and creates a requirements.txt file with the packages that are needed for executing the code. To get a copy of our environment, one would have to run the following commands. First, run 'make create_environment' that will create a conda environment. Then, after switching into that environment, one would have to run 'make requirements' that will install the auto-generated required packages in the created environment. Finally, we provide a basic scrips that tests if torch, torhvision and timm are correclty installed and if cuda is available. One can run this with 'make test_core_packages'.
 
 ### Question 5
 
@@ -107,7 +107,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 > *experiments.*
 > Answer:
 
---- question 5 fill here ---
+LATER - Dimitris
 
 ### Question 6
 
@@ -146,7 +146,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 8 fill here ---
+C,S
 
 ### Question 9
 
@@ -161,7 +161,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 9 fill here ---
+J
 
 ### Question 10
 
@@ -176,7 +176,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 10 fill here ---
+J
 
 ### Question 11
 
@@ -192,7 +192,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 11 fill here ---
+C,S
 
 ## Running code and tracking experiments
 
@@ -211,7 +211,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 12 fill here ---
+D
 
 ### Question 13
 
@@ -226,7 +226,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 13 fill here ---
+R
 
 ### Question 14
 
@@ -243,7 +243,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 14 fill here ---
+J
 
 ### Question 15
 
@@ -258,7 +258,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 15 fill here ---
+R
 
 ### Question 16
 
@@ -273,7 +273,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 16 fill here ---
+R
 
 ## Working in the cloud
 
@@ -290,7 +290,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 17 fill here ---
+J
 
 ### Question 18
 
@@ -305,7 +305,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 18 fill here ---
+J
 
 ### Question 19
 
@@ -314,7 +314,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 19 fill here ---
+J
 
 ### Question 20
 
@@ -323,7 +323,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 20 fill here ---
+D
 
 ### Question 21
 
@@ -332,7 +332,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 21 fill here ---
+D
 
 ### Question 22
 
@@ -348,7 +348,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 22 fill here ---
+R, J, S
 
 ### Question 23
 
@@ -363,7 +363,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 23 fill here ---
+ALL TEAM
 
 ### Question 24
 
@@ -377,7 +377,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 24 fill here ---
+ALL TEAM 
 
 ## Overall discussion of project
 
@@ -398,7 +398,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 25 fill here ---
+ALL TEAM
 
 ### Question 26
 
@@ -412,7 +412,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 26 fill here ---
+ALL TEAM
 
 ### Question 27
 
@@ -429,7 +429,7 @@ We used PyTorch Image Models (timm) in our project. The main functionality we us
 >
 > Answer:
 
---- question 27 fill here ---
+ALL TEAM
 
 ## Project description
 We are doing a project on Computer Vision, therefore we will use the PyTorch Image Models (TIMM) from the pytorch exosystem.

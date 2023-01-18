@@ -7,8 +7,8 @@
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 BUCKET = [OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')
 PROFILE = default
-PROJECT_NAME = template
-PYTHON_INTERPRETER = python3
+PROJECT_NAME = landscapes
+PYTHON_INTERPRETER = python3.9
 
 ifeq (,$(shell which conda))
 HAS_CONDA=False
@@ -68,7 +68,7 @@ create_environment:
 ifeq (True,$(HAS_CONDA))
 		@echo ">>> Detected conda, creating conda environment."
 ifeq (3,$(findstring 3,$(PYTHON_INTERPRETER)))
-	conda create --name $(PROJECT_NAME) python=3
+	conda create --name $(PROJECT_NAME) python=3.9
 else
 	conda create --name $(PROJECT_NAME) python=2.7
 endif
@@ -84,6 +84,10 @@ endif
 ## Test python environment is setup correctly
 test_environment:
 	$(PYTHON_INTERPRETER) test_environment.py
+
+## Test conda and other packages with simple script
+test_core_packages:
+	$(PYTHON_INTERPRETER) test_core_packages.py
 
 #################################################################################
 # PROJECT RULES                                                                 #

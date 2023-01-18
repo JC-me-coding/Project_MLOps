@@ -101,7 +101,7 @@ def training(config):
     ############# LOSS FUNCTION #############
     loss_function = make_loss_func(loss_fun)
     ############# OPTIMIZER #############
-    
+  
     if optimizer == "SGDP":
         optimizer = SGDP(net.parameters(),lr=lr)#, net.parameters(), lr=lr, weight_decay=weight_decay)
     else:
@@ -109,6 +109,7 @@ def training(config):
  
     wandb_config = OmegaConf.to_container(config, resolve=True, throw_on_missing=True)
     wandb.init(project=config.wandb.project, entity=config.wandb.entity, config=wandb_config)
+    
     #Magic
     #wandb.watch(net, log_freq=100)
     

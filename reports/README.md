@@ -49,7 +49,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- 19 ---
+19
 
 ### Question 2
 > **Enter the study number for each member in the group**
@@ -60,7 +60,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 2 fill here ---
+s123540, s183527, s222675, ronjag, dimara
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
@@ -73,7 +73,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 3 fill here ---
+We used PyTorch Image Models (timm) as the main framework for our project. The functionality from which we benefited most is the interchangeability of models using timm.create_model() that only requires the model name and number of classes to be precicted in our data. We were able to choose between a vast amount of model variations that come with pretrained weights and makes training converge faster on our data. Additionally, we experimented with timm.randaugment() augmentation strategy, which implements random augmentations from a list of augmentations that have previously worked well for Image tasks. Finally, we experimented training with a built-in optimization strategy (timm.optim.SGDP). 
 
 ## Coding environment
 
@@ -92,7 +92,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 4 fill here ---
+We used conda and pip for managing our environment dependencies. The list of dependencies was auto-generated using pipreqs package which looks into our code and creates a requirements.txt file with the packages that are needed for executing the code. To get a copy of our environment, one would have to run the following commands. First, run 'make create_environment' that will create a conda environment. Then, after switching into that environment, one would have to run 'make requirements' that will install the auto-generated required packages in the created environment. Finally, we provide a basic scrips that tests if torch, torhvision and timm are correclty installed and if cuda is available. One can run this with 'make test_core_packages'.
 
 ### Question 5
 
@@ -107,7 +107,7 @@ be installed with `pip install click markdown`.
 > *experiments.*
 > Answer:
 
---- question 5 fill here ---
+LATER - Dimitris
 
 ### Question 6
 
@@ -146,7 +146,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 8 fill here ---
+C,S
 
 ### Question 9
 
@@ -161,7 +161,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 9 fill here ---
+J
 
 ### Question 10
 
@@ -176,7 +176,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 10 fill here ---
+J
 
 ### Question 11
 
@@ -192,7 +192,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 11 fill here ---
+C,S
 
 ## Running code and tracking experiments
 
@@ -211,7 +211,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 12 fill here ---
+D
 
 ### Question 13
 
@@ -226,7 +226,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 13 fill here ---
+R
 
 ### Question 14
 
@@ -243,7 +243,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 14 fill here ---
+J
 
 ### Question 15
 
@@ -258,7 +258,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 15 fill here ---
+R
 
 ### Question 16
 
@@ -273,7 +273,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 16 fill here ---
+R
 
 ## Working in the cloud
 
@@ -290,7 +290,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 17 fill here ---
+J
 
 ### Question 18
 
@@ -305,7 +305,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 18 fill here ---
+J
 
 ### Question 19
 
@@ -314,7 +314,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 19 fill here ---
+J
 
 ### Question 20
 
@@ -323,7 +323,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 20 fill here ---
+D
 
 ### Question 21
 
@@ -332,7 +332,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 21 fill here ---
+D
 
 ### Question 22
 
@@ -348,7 +348,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 22 fill here ---
+R, J, S
 
 ### Question 23
 
@@ -363,7 +363,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 23 fill here ---
+ALL TEAM
 
 ### Question 24
 
@@ -377,7 +377,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 24 fill here ---
+ALL TEAM 
 
 ## Overall discussion of project
 
@@ -398,7 +398,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 25 fill here ---
+ALL TEAM
 
 ### Question 26
 
@@ -412,7 +412,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 26 fill here ---
+ALL TEAM
 
 ### Question 27
 
@@ -429,7 +429,7 @@ be installed with `pip install click markdown`.
 >
 > Answer:
 
---- question 27 fill here ---
+ALL TEAM
 
 ## Project description
 We are doing a project on Computer Vision, therefore we will use the PyTorch Image Models (TIMM) from the pytorch exosystem.

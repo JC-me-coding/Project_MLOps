@@ -1,5 +1,7 @@
-from src.data.dataloader import load_data
 from omegaconf import OmegaConf
+
+from src.data.dataloader import load_data
+
 config = OmegaConf.load('src/model_config.yaml')
 root = "data/processed/landscapes"
 batch_size = config.data.batch_size

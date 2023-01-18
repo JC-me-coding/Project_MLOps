@@ -1,0 +1,6 @@
+#external requirements
+flake8
+black
+isort
+mypy
+pytest

@@ -1,23 +1,24 @@
-from omegaconf import OmegaConf
+import argparse
 import os
+import random
+import sys
+
+import numpy as np
 import torch
 import torch.nn as nn
-import sys
-from tqdm import tqdm
-from torch.utils.data import DataLoader
 import wandb
-import sys
-sys.path.append("../src")
-from model import make_model
-from data.dataloader import load_data
-from optimizer import make_optimizer
-from losses import make_loss_func
 import yaml
-import argparse
-import numpy as np
-import random
-global config
+from omegaconf import OmegaConf
+from torch.utils.data import DataLoader
+from tqdm import tqdm
 
+from src.data.dataloader import load_data
+from src.losses import make_loss_func
+from src.model import make_model
+from src.optimizer import make_optimizer
+
+global config
+from timm.optim.sgdp import SGDP
 
 
 def train_step(net, loss_function, optimizer, data_loader, device, epoch):
@@ -32,6 +33,7 @@ def train_step(net, loss_function, optimizer, data_loader, device, epoch):
         sample_num += images.shape[0]
         images, labels = images.to(device), labels.to(device)
         optimizer.zero_grad()
+        #with torch.cuda.amp.autocast():
         outputs = net(images)
         loss = loss_function(outputs, labels)
         loss_sum += loss.item()
@@ -94,16 +96,20 @@ def training(config):
     ############# MODEL #############
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     net = make_model(backbone, pretrained=True).to(device)
+    #net = nn.DataParallel(net)
 
     ############# LOSS FUNCTION #############
     loss_function = make_loss_func(loss_fun)
     ############# OPTIMIZER #############
-    optimizer = make_optimizer(optimizer, net, config)
-    #print(optimizer)
-    
+  
+    if optimizer == "SGDP":
+        optimizer = SGDP(net.parameters(),lr=lr)#, net.parameters(), lr=lr, weight_decay=weight_decay)
+    else:
+        optimizer = make_optimizer(optimizer, net, config)
+ 
     wandb_config = OmegaConf.to_container(config, resolve=True, throw_on_missing=True)
     wandb.init(project=config.wandb.project, entity=config.wandb.entity, config=wandb_config)
-   
+    
     #Magic
     #wandb.watch(net, log_freq=100)
     
@@ -117,7 +123,7 @@ def training(config):
             val_loss, val_accuracy = val_step(net, loss_function, valid_loader, device, epoch)
             if val_accuracy > best_val_acc:
                 best_val_acc = val_accuracy
-                torch.save(net.state_dict(), f'./models/model_best.pth')
+                torch.save(net.state_dict(), f'./models/{backbone}_{config.hyperparameters.learning_rate}.pth')
 
 def train_one_sweep():
     

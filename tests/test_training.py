@@ -11,7 +11,7 @@ from src.ml_utils.optimizer import make_optimizer
 
 def test_training():
     root = "data/processed/landscapes"
-    config = OmegaConf.load('src/model_config.yaml')
+    config = OmegaConf.load('config/train_config.yaml')
     batch_size = config.data.batch_size
     backbone = config.model.backbone
     loss_function = config.training.loss_fun

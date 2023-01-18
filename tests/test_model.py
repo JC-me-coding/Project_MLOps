@@ -8,7 +8,7 @@ from src.models.model import make_model
 # Test the shape of the output from the model
 def test_model():
     root = "data/processed/landscapes"
-    config = OmegaConf.load('src/model_config.yaml')
+    config = OmegaConf.load('config/train_config.yaml')
     backbone = config.model.backbone
 
     valid_loader = load_data(root, split="val", batch_size=1)

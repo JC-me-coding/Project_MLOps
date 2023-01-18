@@ -15,7 +15,7 @@ def predict_input(model_weights, image):
   device = 'cuda' if torch.cuda.is_available() else 'cpu'
   image = image.to(device)
   net = make_model(backbone, pretrained=True).to(device)
-  #net.load_state_dict(torch.load(model_weights))
+  net.load_state_dict(torch.load(model_weights))
   net.eval()
   with torch.no_grad():
     prediction = net(image)

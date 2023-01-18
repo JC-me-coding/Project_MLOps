@@ -13,9 +13,9 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 from src.data.dataloader import load_data
-from src.losses import make_loss_func
-from src.model import make_model
-from src.optimizer import make_optimizer
+from src.ml_utils.losses import make_loss_func
+from src.models.model import make_model
+from src.ml_utils.optimizer import make_optimizer
 
 global config
 from timm.optim.sgdp import SGDP

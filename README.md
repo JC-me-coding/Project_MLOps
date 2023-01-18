@@ -82,7 +82,7 @@ Raw Training:
 
 Training on Docker:
 ``` docker build -f trainer.dockerfile -t trainer:latest  ```
-``` docker run --name exp1 --rm -v $PWD/data/processed:/data/processed -e WANDB_API_KEY=<your-api-key> trainer:latest ```
+``` docker run --name exp1 --rm -v $PWD/data/processed:/data/processed -v <your-config-file-yaml>:/config/train_config.yaml -e WANDB_API_KEY=<your-api-key> trainer:latest ```
 
 # Local Deployment
 Start FastAPI app:

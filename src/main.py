@@ -1,21 +1,22 @@
-from omegaconf import OmegaConf
+import argparse
 import os
+import random
+import sys
+
+import numpy as np
 import torch
 import torch.nn as nn
-import sys
-from tqdm import tqdm
-from torch.utils.data import DataLoader
 import wandb
-import sys
-sys.path.append("../src")
-from model import make_model
-from data.dataloader import load_data
-from optimizer import make_optimizer
-from losses import make_loss_func
 import yaml
-import argparse
-import numpy as np
-import random
+from omegaconf import OmegaConf
+from torch.utils.data import DataLoader
+from tqdm import tqdm
+
+from src.data.dataloader import load_data
+from src.losses import make_loss_func
+from src.model import make_model
+from src.optimizer import make_optimizer
+
 global config
 from timm.optim.sgdp import SGDP
 

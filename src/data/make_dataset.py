@@ -1,7 +1,8 @@
-import zipfile
-import os
-from dvc.repo import Repo
 import glob
+import os
+import zipfile
+
+from dvc.repo import Repo
 
 
 def extract_zip(input_filepath, output_filepath):

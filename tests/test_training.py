@@ -1,12 +1,12 @@
-from omegaconf import OmegaConf
 import torch
-from src.model import make_model
-from src.data.dataloader import load_data
-from src.main import train_step
-from src.main import val_step
-from src.optimizer import make_optimizer
-from src.losses import make_loss_func
 import wandb
+from omegaconf import OmegaConf
+
+from src.data.dataloader import load_data
+from src.losses import make_loss_func
+from src.main import train_step, val_step
+from src.model import make_model
+from src.optimizer import make_optimizer
 
 
 def test_training():

@@ -1,7 +1,9 @@
-from fastapi import FastAPI, UploadFile, File
 from typing import Optional
+
 import cv2
 import numpy as np
+from fastapi import FastAPI, File, UploadFile
+
 from src.models.predict_model import predict_input
 
 app = FastAPI()

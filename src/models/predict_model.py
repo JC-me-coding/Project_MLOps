@@ -1,8 +1,9 @@
-from omegaconf import OmegaConf
-from src.model import make_model
-import torch
 import cv2
 import numpy as np
+import torch
+from omegaconf import OmegaConf
+
+from src.model import make_model
 
 
 def predict_input(model_weights, image):

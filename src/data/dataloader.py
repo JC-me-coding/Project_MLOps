@@ -1,6 +1,7 @@
-from torchvision import datasets, transforms
+from timm.data.auto_augment import rand_augment_transform
 from torch.utils.data import DataLoader
-from timm.data.auto_augment import rand_augment_transform 
+from torchvision import datasets, transforms
+
 
 # ToDo: Use more exotic augmentations from timm5
 def get_train_transforms(config):

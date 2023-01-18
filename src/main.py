@@ -17,7 +17,7 @@ import argparse
 import numpy as np
 import random
 global config
-
+from timm.optim.sgdp import SGDP
 
 
 def train_step(net, loss_function, optimizer, data_loader, device, epoch):
@@ -32,6 +32,7 @@ def train_step(net, loss_function, optimizer, data_loader, device, epoch):
         sample_num += images.shape[0]
         images, labels = images.to(device), labels.to(device)
         optimizer.zero_grad()
+        #with torch.cuda.amp.autocast():
         outputs = net(images)
         loss = loss_function(outputs, labels)
         loss_sum += loss.item()
@@ -94,12 +95,17 @@ def training(config):
     ############# MODEL #############
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     net = make_model(backbone, pretrained=True).to(device)
+    #net = nn.DataParallel(net)
 
     ############# LOSS FUNCTION #############
     loss_function = make_loss_func(loss_fun)
     ############# OPTIMIZER #############
-    optimizer = make_optimizer(optimizer, net, config)
-    #print(optimizer)
+    
+    if optimizer == "SGDP":
+        optimizer = SGDP(net.parameters(),lr=lr)#, net.parameters(), lr=lr, weight_decay=weight_decay)
+    else:
+        optimizer = make_optimizer(optimizer, net, config)
+ 
     wandb_config = OmegaConf.to_container(config, resolve=True, throw_on_missing=True)
     wandb.init(project=config.wandb.project, entity=config.wandb.entity, config=wandb_config)
     #Magic

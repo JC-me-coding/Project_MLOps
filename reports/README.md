@@ -118,7 +118,7 @@ LATER - Dimitris
 >
 > Answer:
 
---- question 6 fill here ---
+not done
 
 ## Version control
 
@@ -261,7 +261,7 @@ J
 >
 > Answer:
 
-R
+In our project, we used docker for our training procedure, although it would have also be beneficial for the prediction procedure. The appropriate dockerfile can be found in [trainer.dockerfile](trainer.dockerfile) for CPU training and in [trainer_gpu.dockerfile](trainer_gpu.dockerfile) for training on GPU. Once the docker images is built, the training can be initiated with `docker run --name exp1 --rm -v $PWD/data/processed:/data/processed -v <your-config-file-yaml>:/config/train_config.yaml -e WANDB_API_KEY=<your-api-key> trainer:latest`. Alternatively, our custom docker image can be used in the Google Cloud, e.g. for initiating a training on Vertex AI. The image should be uploaded to the container registry in order to use it with Vertex AI.
 
 ### Question 16
 
@@ -276,7 +276,7 @@ R
 >
 > Answer:
 
-R
+We mainly performed debugging in the Visual Code IDE. We setup the .vscode/launch.json to debug our src/main.py or the current file which is practical when one wants to debug individual files. By setting a breakpoint at the desired position, one can look into the current variable values, but also play around with the variables in the debug console. Sometimes, debugging was also performed with simple print outs of information. Unfortunately, we didn't profile our code, because we didn't find time to do it. 
 
 ## Working in the cloud
 
@@ -351,7 +351,8 @@ D
 >
 > Answer:
 
-R, J, S
+At first, we deployed the model locally with FastAPI and uvicorn. The app is started with `uvicorn --reload --port 8000 app.main:app`, while the prediction is requested with `curl -X 'POST' 'http://localhost:8000/predict/' -F "data=@<your-test-image>`. It works as it should.
+Secondly, we deployed the model with google cloud functions. It takes the model weights from the google bucket and applies the same prediction code to the uploaded image as locally. It also works fine.
 
 ### Question 23
 
@@ -433,21 +434,3 @@ ALL TEAM
 > Answer:
 
 ALL TEAM
-
-## Project description
-We are doing a project on Computer Vision, therefore we will use the PyTorch Image Models (TIMM) from the pytorch exosystem.
-
-### Model
-We will build up a classification model, which applies different backbone architecture to extract image features. We intend to compare variations of ResNet (ResNet, ResNext, + Bag of Tricks, ...) and if time allows we will be axploring more exotic backbones.
-
-### Data
-We use a dataset for Landscape recognition from Kaggle ([Link to dataset](https://www.kaggle.com/datasets/utkarshsaxenadn/landscape-recognition-image-dataset-12k-images)). It consists of a total of 12000 images, including 5 classes: Coast, Desert, Forest, Glacier, Mountain. The classes is evenly distributed, so we have xxxx images for each class.
-
-ToDo: Show some sample images
-
-### TIMM
-TIMM provides a very large selection of model architecture, which come with pre-trained weights. We use these as backbone with our classification model and expect that it will be fairly easy to exchange the backbone architecture.
-We also plan to use some additional features, the framwork supplies.
- * Augmentation Strategies
- * Less common optimizers
- * Methods to speed up the training such as mixed precision and DistributedDataParallel with multi-GPU

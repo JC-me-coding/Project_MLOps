@@ -1,6 +1,7 @@
 from typing import Optional
 
 import cv2
+from PIL import Image
 import numpy as np
 from fastapi import FastAPI, File, UploadFile
 
@@ -16,9 +17,10 @@ async def cv_model(data: UploadFile = File(...)):
             image.write(content)
             image.close()
 
-         img = cv2.imread("image.jpg")
+         # img = cv2.imread("image.jpg")
+         img = np.array(Image.open("image.jpg"))
 
-         prediction = predict_input(0,img)
+         prediction = predict_input("models/model_best.pth",img)
 
          return {'prediction': prediction}
          #return {'file_name': data.filename}

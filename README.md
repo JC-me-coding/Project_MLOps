@@ -73,3 +73,16 @@ We also plan to use some additional features, the framwork supplies.
  * Augmentation Strategies
  * Less common optimizers
  * Methods to speed up the training such as mixed precision and DistributedDataParallel with multi-GPU
+
+## Use the code
+
+# Local Deployment
+Start FastAPI app:
+``` uvicorn --reload --port 8000 app.main:app ```
+Trigger with curl:
+``` curl -X 'POST' 'http://localhost:8000/predict/' -F "data=@<your-test-image>" ``
+
+# Global Deployment
+``` curl -m 70 -X POST https://europe-west1-spherical-park-374308.cloudfunctions.net/landscape-classify -H "Authorization: bearer $(gcloud auth print-identity-token)" -F "img=@<your-test-image>" ```
+
+

@@ -1,22 +1,21 @@
 import cv2
-imporsrc.models.models np
+import numpy as np
+from src.models.model import make_model
 import torch
 from omegaconf import OmegaConf
-
-from src.model import make_model
 
 
 def predict_input(model_weights, image):
   image = cv2.resize(image,[224,224]).astype(np.float32)
   image = torch.from_numpy(image)
   image = image.unsqueeze(0).permute(0,3,1,2)
-  config = OmegaConf.load('src/model_config.yaml')
+  config = OmegaConf.load('config/train_config.yaml')
   classes = config.data.classes
   backbone = config.model.backbone
   device = 'cuda' if torch.cuda.is_available() else 'cpu'
   image = image.to(device)
   net = make_model(backbone, pretrained=True).to(device)
-  net.load_state_dict(torch.load(model_weights))
+  net.load_state_dict(torch.load(model_weights, map_location=torch.device(device)))
   net.eval()
   with torch.no_grad():
     prediction = net(image)

@@ -1,5 +1,6 @@
-from omegaconf import OmegaConf
+import os.path
 
+from omegaconf import OmegaConf
 from src.data.dataloader import load_data
 
 config = OmegaConf.load('config/train_config.yaml')
@@ -7,12 +8,14 @@ root = "data/processed/landscapes"
 batch_size = config.data.batch_size
 input_size = config.data.input_size
 
+@pytest.mark.skipif(not os.path.exists(root), reason="Data files not found")
 def test_data_split_size():
   train_loader = load_data(root, "train", batch_size, config.data)
   valid_loader = load_data(root, "val", 1, config.data)
   assert len(train_loader.dataset) == 10000
   assert len(valid_loader.dataset) == 1500
 
+@pytest.mark.skipif(not os.path.exists(root), reason="Data files not found")
 def test_img_shape():
   train_loader = load_data(root, "train", batch_size, config.data)
   valid_loader = load_data(root, "val", 1, config.data)

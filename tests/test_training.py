@@ -2,7 +2,7 @@ import os.path
 import pytest
 import torch
 import wandb
-from src.models.model import OmegaConf
+from omegaconf import OmegaConf
 
 from src.data.dataloader import load_data
 from src.ml_utils.losses import make_loss_func

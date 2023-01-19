@@ -408,7 +408,15 @@ R, J, S
 >
 > Answer:
 
-ALL TEAM
+We did not implement monitoring for this project.
+However, we are aware that monitoring is a definite advantage for bigger and longer 
+lasting projects, in order to ensure that a continuously good performance is obtained.
+
+Monitoring is an important and relevant tool, that would allow us to follow the model
+after deployment. It could provide us with information regarding the performance, and alert us
+if any intervention is needed. One reason for this is that over time, a generalization 
+problem will likely occur, which will damage the performance.
+Another use of monitoring is being able to track relevant metrics, which is done through telemetry.
 
 ### Question 24
 

@@ -149,7 +149,7 @@ We used PyTorch Image Models (timm) as the main framework for our project. The f
 >
 > Answer:
 
-We used conda and pip for managing our environment dependencies. The list of dependencies was auto-generated using pipreqs package which looks into our code and creates a requirements.txt file with the packages that are needed for executing the code. To get a copy of our environment, one would have to run the following commands. First, run 'make create_environment' that will create a conda environment. Then, after switching into that environment, one would have to run 'make requirements' that will install the auto-generated required packages in the created environment. Finally, we provide a basic scrips that tests if torch, torchvision and timm are correctly installed and if cuda is available. One can run this with 'make test_core_packages'.
+We used conda and pip for managing our environment dependencies. The list of dependencies was auto-generated using pipreqs package which looks into our code and creates a requirements.txt file with the packages that are needed for executing the code. To get a copy of our environment, one would have to run the following commands. First, run 'make create_environment' that will create a conda environment. Then, after switching into that environment, one would have to run 'make requirements' that will install the auto-generated required packages in the created environment. Finally, we provide a basic script based on cookiecutter test_environment that tests the python version and  if torch, torchvision and timm are correctly installed. One can run this with 'make test_environment'.
 
 ### Question 5
 
@@ -164,7 +164,8 @@ We used conda and pip for managing our environment dependencies. The list of dep
 > *experiments.*
 > Answer:
 
-D 
+From the cookie cutter template we have filled out the data folder, using the raw and processed subfolders, using the raw folder for pulling data and the processed folder for the prepared data to be used by our models. Additionally, we created a test_imgs folder for testing. We used the models folder for storing the weights of the best-performing model.
+We also used the report folder to store the report and figures. The src folder contains the training and prediction pipelines, as well as the model structure and data-loading pipeline. Inside the src folder, we added a ml_utils folder for our optimizer and loss function. We followed the original Makefile and requirements list files. From the cookiecutter structure, we remove the docs and the references folders due to the simplicity of the project and the notebooks folder as we did not develop code on notebooks. We added a config folder to host all configuration files and a scripts folder for running a training script on the docker and additional utility scripts not crucial for training or prediction. Finally, we added an apps folder to host our fast API framework.
 
 ### Question 6
 

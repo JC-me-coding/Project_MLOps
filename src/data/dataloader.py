@@ -6,7 +6,9 @@ from torchvision import datasets, transforms
 # ToDo: Use more exotic augmentations from timm5
 def get_train_transforms(config):
     transform_list = []
-    #transform_list.append(rand_augment_transform(config_str = 'rand-m9-n3-mstd0.5', hparams = {}))
+    transform_list.append(
+        rand_augment_transform(config_str="rand-m9-n3-mstd0.5", hparams={})
+    )
     transform_list.append(transforms.RandomResizedCrop(config.input_size))
     transform_list.append(transforms.ToTensor())
     transform_list.append(transforms.RandomHorizontalFlip())
@@ -28,11 +30,15 @@ def get_val_transforms(config):
 
 
 def load_data(root, split, batch_size, data_config):
-        
+
     if split == "train":
-        data = datasets.ImageFolder(f"{root}/Training Data", get_train_transforms(data_config))
+        data = datasets.ImageFolder(
+            f"{root}/Training Data", get_train_transforms(data_config)
+        )
     elif split == "val":
-        data = datasets.ImageFolder(f"{root}/Validation Data", get_val_transforms(data_config))
+        data = datasets.ImageFolder(
+            f"{root}/Validation Data", get_val_transforms(data_config)
+        )
 
     return DataLoader(
         data,

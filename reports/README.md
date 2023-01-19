@@ -421,7 +421,7 @@ All team members have admin right to the project workspace, which can be granted
 >
 > Answer:
 
-J
+We attempted to train the model for the project with a VM with one NVIDIA V100 GPU, however this was not completed successfully due to connectivity issues. Firstly, training was attempted with a e2-standard-4- (4 vCPU, 16 GB memory), however we ran out of memory when training on this engine was initiated.
 
 ### Question 19
 
@@ -430,7 +430,7 @@ J
 >
 > Answer:
 
-J
+![GCP bucket](figures/bucket.png)
 
 ### Question 20
 
@@ -480,7 +480,15 @@ Secondly, we deployed the model with google cloud functions. It takes the model 
 >
 > Answer:
 
-ALL TEAM
+We did not implement monitoring for this project.
+However, we are aware that monitoring is a definite advantage for bigger and longer 
+lasting projects, in order to ensure that a continuously good performance is obtained.
+
+Monitoring is an important and relevant tool, that would allow us to follow the model
+after deployment. It could provide us with information regarding the performance, and alert us
+if any intervention is needed. One reason for this is that over time, a generalization 
+problem will likely occur, which will damage the performance.
+Another use of monitoring is being able to track relevant metrics, which is done through telemetry.
 
 ### Question 24
 

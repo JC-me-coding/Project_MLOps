@@ -83,11 +83,7 @@ endif
 
 ## Test python environment is setup correctly
 test_environment:
-	$(PYTHON_INTERPRETER) test_environment.py
-
-## Test conda and other packages with simple script
-test_core_packages:
-	$(PYTHON_INTERPRETER) test_core_packages.py
+	$(PYTHON_INTERPRETER) tests/test_environment.py
 
 #################################################################################
 # PROJECT RULES                                                                 #

@@ -107,7 +107,7 @@ We used conda and pip for managing our environment dependencies. The list of dep
 > *experiments.*
 > Answer:
 
-LATER - Dimitris
+D 
 
 ### Question 6
 
@@ -117,8 +117,8 @@ LATER - Dimitris
 > Answer length: 50-100 words.
 >
 > Answer:
+S
 
-not done
 
 ## Version control
 
@@ -259,7 +259,6 @@ there would not be a need for downloading the dependencies each time.
 
 We used configuration files. We structure the file so that it hosts model, data, hyperparameters, training, reproducability and project parameters. To run the code, one needs to just run the script (e.g. 'python main.py') as the config is loaded inside the script. In case we want to specify the config from the command line we could add an optional argparser.
 
-
 ### Question 13
 
 > **Reproducibility of experiments are important. Related to the last question, how did you secure that no information**
@@ -273,9 +272,8 @@ We used configuration files. We structure the file so that it hosts model, data,
 >
 > Answer:
 
-We used the config file. Whenever an experiment runs the following happens: The config file gets logged into the wandb run. That way the information is secured. To run our experiments with the same config file, one would have to find the corresponding run on wandb, navigate into the run overview and copy the run path (e.g 'dtumlops-group19/backbones/3nm3vv75'). Then by running the script with two arguments, one for the run path and one for the name for the generated config.
-
-`python scripts/get_wandb_config.py <run_path> <config_path>'
+For a development setting we used the config file. Whenever an experiment runs the following happens: The config file gets logged into the wandb run. That way the information is secured. To run our experiments with the same config file, one would have to find the corresponding run on wandb, navigate into the run overview and copy the run path (e.g 'dtumlops-group19/backbones/3nm3vv75'). Then by running the script `python scripts/get_wandb_config.py <run_path> <config_path>'. Finally, run the experiment as described in question 12, using the generated config.
+For a fully reproducible setting, one can use the container trainer.dockerfile, by executing 'docker build --no-cache -f trainer.dockerfile . -t trainer:latest' and then running 'docker run --name <name> trainer:latest' .
 
 ### Question 14
 
@@ -379,7 +377,7 @@ J
 >
 > Answer:
 
-D
+![GCP container registry](figures/registry_2.png)
 
 ### Question 21
 
@@ -388,7 +386,7 @@ D
 >
 > Answer:
 
-D
+![GCP cloud build history](figures/build.png)
 
 ### Question 22
 

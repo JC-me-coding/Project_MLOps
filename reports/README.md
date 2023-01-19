@@ -42,6 +42,63 @@ short, too long, have you included an image when asked to.
 For both functions to work it is important that you do not rename anything. The script have two dependencies that can
 be installed with `pip install click markdown`.
 
+## Overall project checklist
+
+The checklist is *exhaustic* which means that it includes everything that you could possible do on the project in
+relation the curricilum in this course. Therefore, we do not expect at all that you have checked of all boxes at the
+end of the project.
+
+### Week 1
+
+* [x] Create a git repository
+* [x] Make sure that all team members have write access to the github repository
+* [x] Create a dedicated environment for you project to keep track of your packages
+* [x] Create the initial file structure using cookiecutter
+* [x] Fill out the `make_dataset.py` file such that it downloads whatever data you need and
+* [x] Add a model file and a training script and get that running
+* [x] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
+* [ ] Remember to comply with good coding practices (`pep8`) while doing the project
+* [ ] Do a bit of code typing and remember to document essential parts of your code
+* [x] Setup version control for your data or part of your data
+* [x] Construct one or multiple docker files for your code
+* [x] Build the docker files locally and make sure they work as intended
+* [x] Write one or multiple configurations files for your experiments
+* [x] Used Hydra to load the configurations and manage your hyperparameters
+* [ ] When you have something that works somewhat, remember at some point to to some profiling and see if
+      you can optimize your code
+* [x] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
+      consider running a hyperparameter optimization sweep.
+* [ ] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
+
+### Week 2
+
+* [x] Write unit tests related to the data part of your code
+* [x] Write unit tests related to model construction and or model training
+* [x] Calculate the coverage.
+* [x] Get some continuous integration running on the github repository
+* [x] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
+* [x] Create a trigger workflow for automatically building your docker images
+* [x] Get your model training in GCP using either the Engine or Vertex AI
+* [x] Create a FastAPI application that can do inference using your model
+* [ ] If applicable, consider deploying the model locally using torchserve
+* [x] Deploy your model in GCP using either Functions or Run as the backend
+
+### Week 3
+
+* [ ] Check how robust your model is towards data drifting
+* [ ] Setup monitoring for the system telemetry of your deployed model
+* [ ] Setup monitoring for the performance of your deployed model
+* [x] If applicable, play around with distributed data loading
+* [ ] If applicable, play around with distributed model training
+* [ ] Play around with quantization, compilation and pruning for you trained models to increase inference speed
+
+### Additional
+
+* [ ] Revisit your initial project description. Did the project turn out as you wanted?
+* [x] Make sure all group members have a understanding about all parts of the project
+* [x] Uploaded all your code to github
+
+
 ## Group information
 
 ### Question 1
@@ -73,7 +130,7 @@ s123540, s183527, s222675, ronjag, dimara
 >
 > Answer:
 
-We used PyTorch Image Models (timm) as the main framework for our project. The functionality from which we benefited most is the interchangeability of models using timm.create_model() that only requires the model name and number of classes to be precicted in our data. We were able to choose between a vast amount of model variations that come with pretrained weights and makes training converge faster on our data. Additionally, we experimented with timm.randaugment() augmentation strategy, which implements random augmentations from a list of augmentations that have previously worked well for Image tasks. Finally, we experimented training with a built-in optimization strategy (timm.optim.SGDP). 
+We used PyTorch Image Models (timm) as the main framework for our project. The functionality from which we benefited most is the interchangeability of models using timm.create_model() that only requires the model name and number of classes to be predicted in our data. We were able to choose between a vast amount of model variations that come with pretrained weights and makes training converge faster on our data. Additionally, we experimented with timm.randaugment() augmentation strategy, which implements random augmentations from a list of augmentations that have previously worked well for Image tasks. Finally, we experimented training with a built-in optimization strategy (timm.optim.SGDP). 
 
 ## Coding environment
 
@@ -92,7 +149,7 @@ We used PyTorch Image Models (timm) as the main framework for our project. The f
 >
 > Answer:
 
-We used conda and pip for managing our environment dependencies. The list of dependencies was auto-generated using pipreqs package which looks into our code and creates a requirements.txt file with the packages that are needed for executing the code. To get a copy of our environment, one would have to run the following commands. First, run 'make create_environment' that will create a conda environment. Then, after switching into that environment, one would have to run 'make requirements' that will install the auto-generated required packages in the created environment. Finally, we provide a basic scrips that tests if torch, torhvision and timm are correclty installed and if cuda is available. One can run this with 'make test_core_packages'.
+We used conda and pip for managing our environment dependencies. The list of dependencies was auto-generated using pipreqs package which looks into our code and creates a requirements.txt file with the packages that are needed for executing the code. To get a copy of our environment, one would have to run the following commands. First, run 'make create_environment' that will create a conda environment. Then, after switching into that environment, one would have to run 'make requirements' that will install the auto-generated required packages in the created environment. Finally, we provide a basic scrips that tests if torch, torchvision and timm are correctly installed and if cuda is available. One can run this with 'make test_core_packages'.
 
 ### Question 5
 
@@ -117,7 +174,8 @@ D
 > Answer length: 50-100 words.
 >
 > Answer:
-S
+
+Since our project is relatively small and we wanted to spend our time on different tasks, we decided to not comply to any code quality rules, like for example pep8. In larger project these concepts matter because different people work on the same code and a common format/quality makes it easier to read and understand others code.
 
 
 ## Version control
@@ -170,7 +228,7 @@ For the rest of the scripts we obtain a coverage of 100%.
 
 A high coverage does not mean that the code is free from errors, 
 and it should not be used as a measure of success alone. 
-A reason for this is the code coverage not evaluating on the quality of the tests,
+Code coverage is not evaluating on the quality of the tests,
 meaning that there are many possibilities of errors that are simply not being tested for.
 
 
@@ -188,7 +246,7 @@ meaning that there are many possibilities of errors that are simply not being te
 >
 > Answer:
 
-We made use of both branches and PRs. In our group, every time a new task was initiated, the assigned group member created a dedicated branch and made local changes. It was decided to go with a "task centric" approach when creating branches rather than each team member having their own branch throughout the project, in the interest of the branches and updates being more self-explanatory and to ensure smooth collaboration in between the team members. Whenever the changes were ready for merging, the updates were pushed to the remote reposotory in the branch. To merge code, PRs were created and had to be approved by one other team member. This was set up in order to protect the main branch.
+We made use of both branches and PRs. In our group, every time a new task was initiated, the assigned group member created a dedicated branch and made local changes. It was decided to go with a "task centric" approach when creating branches rather than each team member having their own branch throughout the project, in the interest of the branches and updates being more self-explanatory and to ensure smooth collaboration in between the team members. Whenever the changes were ready for merging, the updates were pushed to the remote repository in the branch. To merge code, PRs were created and had to be approved by one other team member. This was set up in order to protect the main branch.
 
 
 ### Question 10
@@ -204,7 +262,7 @@ We made use of both branches and PRs. In our group, every time a new task was in
 >
 > Answer:
 
-We used dvc for the project. We used Gdrive for our remote storage and used the cookiecutter template for dividing the data into raw, processed and interrim. It was helpful for us to have the data under version control seperate from the code of the project, however we did not update the datasets for training/Testing the model during the duration of this project. Hence, the dvc was mostly used for keeping the dataset out of scope of the git version control og remaining parts of the project. In a production setting, data version control would be of great help to support retraining of a model during its lifecycle.
+We used dvc for the project. First, we used Gdrive, later GCP Buckets for our remote storage and used the cookiecutter template for dividing the data into raw, processed. Only the .zip-file in raw was version controlled. Data version control helps one to easily get the appropriate data, related to the state of the git repo, however we did not update the datasets for training/testing the model during the duration of this project. In a bigger project, where data changes over time, version control is essential in order to keep track of when which data is/was available. It allows one to get back to a previous state.
 
 ### Question 11
 
@@ -220,13 +278,12 @@ We used dvc for the project. We used Gdrive for our remote storage and used the 
 >
 > Answer:
 
-For this project, it was chosen to have three different workflow files. 
-One is the 'flake.yml' file, which covers the linting, another is 'isort.yml', 
-which checks that our imports are in the correct order. 
-The third file is the 'tests.yml', which covers the unit testing.
-The files mentioned above are run through Github actions whenever a 'push' occurs.
-In addition to this, the unit tests are also run locally, in order to check the 
-data that is not available in Github. 
+For this project, it was chosen to have three different workflow files.
+We added one workflow for linting - 'flake.yml -, however we didn't comply to these.
+'isort.yaml' checks that out imports are in the correct order. This can be easily fixed by running `isort src` on our code.
+'tests.yml' is our most complex workflow, which applies unittest on non data-dependent tests. We expect everyone to run data-dependent tests locally before pushing the code.
+The files mentioned above are run through Github actions whenever a 'push' occurs on the main.
+ 
 
 We have chosen to only do the testing in Ubuntu, as we did not find it relevant
 to test the other two files since the servers the code will be run on, will in all 
@@ -236,9 +293,8 @@ as mentioned we did not find it relevant in this case.
 As for the Python, we only tested Python 3.8. Again, we could have chosen
 a different option, but it would be somehow arbitrary.
 
-We did not make use of caching for our Python requirements. 
-If doing so, running our tests on Github probably would have taken less time, as
-there would not be a need for downloading the dependencies each time.
+We did make use of caching for our Python requirements to decrease the testing time on GitHub during a push.
+An example of a triggered unittest workflow can be seen here: https://github.com/JC-me-coding/Project_MLOps/actions/runs/3956524628/jobs/6775837084
 
 ## Running code and tracking experiments
 
@@ -257,7 +313,7 @@ there would not be a need for downloading the dependencies each time.
 >
 > Answer:
 
-We used configuration files. We structure the file so that it hosts model, data, hyperparameters, training, reproducability and project parameters. To run the code, one needs to just run the script (e.g. 'python main.py') as the config is loaded inside the script. In case we want to specify the config from the command line we could add an optional argparser.
+We used yaml configuration files, that are loaded with Hydra. We structure the config file so that it hosts model, data, hyperparameters, training, reproducability and general project parameters. To run the code, one needs to just run the script (e.g. 'python main.py') as the default config (config/train_config.yaml) is loaded inside the script. One can also specify a custom config by passing the path via argparse. The command would look like this: `python src/main.py --config <path-to-config>`.
 
 ### Question 13
 
@@ -273,7 +329,7 @@ We used configuration files. We structure the file so that it hosts model, data,
 > Answer:
 
 For a development setting we used the config file. Whenever an experiment runs the following happens: The config file gets logged into the wandb run. That way the information is secured. To run our experiments with the same config file, one would have to find the corresponding run on wandb, navigate into the run overview and copy the run path (e.g 'dtumlops-group19/backbones/3nm3vv75'). Then by running the script `python scripts/get_wandb_config.py <run_path> <config_path>'. Finally, run the experiment as described in question 12, using the generated config.
-For a fully reproducible setting, one can use the container trainer.dockerfile, by executing 'docker build --no-cache -f trainer.dockerfile . -t trainer:latest' and then running 'docker run --name <name> trainer:latest' .
+For a fully reproducible setting (hardware + software), one can use the container trainer.dockerfile and load the appropriate config to it.
 
 ### Question 14
 
@@ -289,8 +345,11 @@ For a fully reproducible setting, one can use the container trainer.dockerfile, 
 > *As seen in the second image we are also tracking ... and ...*
 >
 > Answer:
+Since we have a classification task, we logged the following information: training loss and accuracy as well as validation loss and accuracy. It didn't really make sense to log images, since they were not modified (e.g. drawn labels such as segmentation mask or generated images). We performed a hyperparameter sweep with a relatively small backbone (ResNet18) to minimize the computational costs. In total we made 15 run during the sweep. Looking at the ![sweep graph](figures/wandb_sweep.png), we can see that combination of sgd, a relatively low learning rate around 0.001 and a small batch size ~32 leads to the pest performance. 
+Next, we used the well-performing hyperparameters to run training experiments on different backbone architectures from timm. We show our validation results in the ![loss graph](figures/wandb_loss.png) and
+![accuracy graph](figures/wandb_acc.png). The Convnext-tiny architecture leads to the best validation accuracy. We could now perform a second sweep iteration and apply a hyperparameter sweep to this backbone and see if we can find even better hyperparameters. Additionally, we should perform a training for more epochs and with learning rate scheduling to see how far we can push the accuracy. However, we didn't find the time to perform these actions. 
 
-R
+Finally, we decided to deplpoy a model with a ResNet-18 backbone, because it can run relatively fast on CPU for inference.
 
 ### Question 15
 
@@ -320,7 +379,7 @@ In our project, we used docker for our training procedure, although it would hav
 >
 > Answer:
 
-We mainly performed debugging in the Visual Code IDE. We setup the .vscode/launch.json to debug our src/main.py or the current file which is practical when one wants to debug individual files. By setting a breakpoint at the desired position, one can look into the current variable values, but also play around with the variables in the debug console. Sometimes, debugging was also performed with simple print outs of information. Unfortunately, we didn't profile our code, because we didn't find time to do it. 
+We mainly performed debugging in the Visual Code IDE. We setup the .vscode/launch.json to debug our src/main.py or the current file which is practical when one wants to debug individual files. By setting a breakpoint at the desired position, one can look into the current variable values, but also play around with the variables in the debug console. Sometimes, debugging was also performed with simple print outs of information. For debugging our dockerfiles, we built the docker and entered it interactively to check what is missing in the environment. Unfortunately, we didn't profile our code - nor with CProfiler neither with the in-built torch profiler -, because we didn't find time to do it. 
 
 ## Working in the cloud
 
@@ -341,6 +400,9 @@ We used the following services:
 
 Bucket: for storing our best trained pytorch model with trained weights and our data (dvc)
 Functions: For deploying our model
+Trigger: When pushing/merging code on the main branch, we automatically build the training docker image.
+Registriy: Here, all our images are stored.
+Vertex AI: We did setup a training on Vertex AI. However, we didn't manage to get it running on GPU because they were not available
 
 For the exercises during the course, Engine instances were used to train on a GPU, however for the project the model was trained on HPC.
 
@@ -403,7 +465,7 @@ We attempted to train the model for the project with a VM with one NVIDIA V100 G
 > Answer:
 
 At first, we deployed the model locally with FastAPI and uvicorn. The app is started with `uvicorn --reload --port 8000 app.main:app`, while the prediction is requested with `curl -X 'POST' 'http://localhost:8000/predict/' -F "data=@<your-test-image>`. It works as it should.
-Secondly, we deployed the model with google cloud functions. It takes the model weights from the google bucket and applies the same prediction code to the uploaded image as locally. It also works fine.
+Secondly, we deployed the model with google cloud functions. It takes the model weights from the google bucket and applies the same prediction code to the uploaded image as locally. It also works fine. Google cloud function is less flexible compared to google cloud run, where you use docker images to deploy your FastAPI app. However, it is easier to setup by only providing small code snippets to handle requests as well as the necessary requirements.
 
 ### Question 23
 

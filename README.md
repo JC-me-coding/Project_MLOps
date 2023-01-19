@@ -76,13 +76,22 @@ We also plan to use some additional features, the framwork supplies.
 
 ## Use the code
 
+# Training
+Raw Training:
+``` python src/main.py ```
+
+Training on Docker:
+``` docker build -f trainer.dockerfile -t trainer:latest  ```
+``` docker run --name exp1 --rm -v $PWD/data/processed:/data/processed -v <your-config-file-yaml>:/config/train_config.yaml -e WANDB_API_KEY=<your-api-key> trainer:latest ```
+
 # Local Deployment
 Start FastAPI app:
 ``` uvicorn --reload --port 8000 app.main:app ```
 Trigger with curl:
 ``` curl -X 'POST' 'http://localhost:8000/predict/' -F "data=@<your-test-image>" ``
 
-# Global Deployment
+# GCP Deployment
+Trigger Google Cloud Functions Deployment:
 ``` curl -m 70 -X POST https://europe-west1-spherical-park-374308.cloudfunctions.net/landscape-classify -H "Authorization: bearer $(gcloud auth print-identity-token)" -F "img=@<your-test-image>" ```
 
 

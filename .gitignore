@@ -94,4 +94,6 @@ target/
 wandb/
 
 # Exclude model checkpoints
-.models/*
+models/*
+image.jpg
+

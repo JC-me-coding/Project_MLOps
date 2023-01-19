@@ -1,15 +1,16 @@
 import cv2
+import PIL
 import numpy as np
 from src.models.model import make_model
 import torch
 from omegaconf import OmegaConf
-
+from src.data.dataloader import get_val_transforms
 
 def predict_input(model_weights, image):
-  image = cv2.resize(image,[224,224]).astype(np.float32)
-  image = torch.from_numpy(image)
-  image = image.unsqueeze(0).permute(0,3,1,2)
   config = OmegaConf.load('config/train_config.yaml')
+  val_transforms = get_val_transforms(config.data)
+  image = val_transforms(image)
+  image = image.unsqueeze(0)
   classes = config.data.classes
   backbone = config.model.backbone
   device = 'cuda' if torch.cuda.is_available() else 'cpu'

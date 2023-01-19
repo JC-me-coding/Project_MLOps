@@ -4,8 +4,10 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--run_path', type=str, default="dtumlops-group19/backbones/3nm3vv75")
-parser.add_argument('--config_path', type=str, default="config/wandb_config.yaml")
+parser.add_argument(
+    "--run_path", type=str, default="dtumlops-group19/backbones/3nm3vv75"
+)
+parser.add_argument("--config_path", type=str, default="config/wandb_config.yaml")
 args = parser.parse_args()
 
 api = wandb.Api()

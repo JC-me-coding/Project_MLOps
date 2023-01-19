@@ -9,17 +9,18 @@ from src.predict_model import predict_input
 
 app = FastAPI()
 
+
 @app.post("/predict/")
 async def cv_model(data: UploadFile = File(...)):
 
-         with open('image.jpg', 'wb') as image:
-            content = await data.read()
-            image.write(content)
-            image.close()
+    with open("image.jpg", "wb") as image:
+        content = await data.read()
+        image.write(content)
+        image.close()
 
-         img = Image.open("image.jpg")
+    img = Image.open("image.jpg")
 
-         prediction = predict_input("models/model_best.pth",img)
+    prediction = predict_input("models/model_best.pth", img)
 
-         return {'prediction': prediction}
-         #return {'file_name': data.filename}
+    return {"prediction": prediction}
+    # return {'file_name': data.filename}

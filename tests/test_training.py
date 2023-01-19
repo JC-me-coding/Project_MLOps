@@ -14,13 +14,14 @@ root = "data/processed/landscapes"
 config = OmegaConf.load('config/train_config.yaml')
 batch_size = config.data.batch_size
 backbone = config.model.backbone
-loss_function = config.training.loss_fun
-optimizer = config.training.optimizer
-epoch = 1
+
 
 
 @pytest.mark.skipif(not os.path.exists(root), reason="Data files not found")
 def test_training():
+    optimizer = config.training.optimizer
+    loss_function = config.training.loss_fun
+    epoch = 1
     train_loader = load_data(root, "train", batch_size, config.data)
     valid_loader = load_data(root, "val", 1, config.data)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'

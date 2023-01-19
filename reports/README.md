@@ -188,7 +188,8 @@ meaning that there are many possibilities of errors that are simply not being te
 >
 > Answer:
 
-J
+We made use of both branches and PRs. In our group, every time a new task was initiated, the assigned group member created a dedicated branch and made local changes. It was decided to go with a "task centric" approach when creating branches rather than each team member having their own branch throughout the project, in the interest of the branches and updates being more self-explanatory and to ensure smooth collaboration in between the team members. Whenever the changes were ready for merging, the updates were pushed to the remote reposotory in the branch. To merge code, PRs were created and had to be approved by one other team member. This was set up in order to protect the main branch.
+
 
 ### Question 10
 
@@ -203,7 +204,7 @@ J
 >
 > Answer:
 
-J
+We used dvc for the project. We used Gdrive for our remote storage and used the cookiecutter template for dividing the data into raw, processed and interrim. It was helpful for us to have the data under version control seperate from the code of the project, however we did not update the datasets for training/Testing the model during the duration of this project. Hence, the dvc was mostly used for keeping the dataset out of scope of the git version control og remaining parts of the project. In a production setting, data version control would be of great help to support retraining of a model during its lifecycle.
 
 ### Question 11
 
@@ -338,7 +339,14 @@ We mainly performed debugging in the Visual Code IDE. We setup the .vscode/launc
 >
 > Answer:
 
-J
+We used the following services:
+
+Bucket: for storing our best trained pytorch model with trained weights and our data (dvc)
+Functions: For deploying our model
+
+For the exercises during the course, Engine instances were used to train on a GPU, however for the project the model was trained on HPC.
+
+All team members have admin right to the project workspace, which can be granted under IAM (Identity and access management).
 
 ### Question 18
 

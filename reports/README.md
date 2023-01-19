@@ -149,7 +149,7 @@ We used PyTorch Image Models (timm) as the main framework for our project. The f
 >
 > Answer:
 
-We used conda and pip for managing our environment dependencies. The list of dependencies was auto-generated using pipreqs package which looks into our code and creates a requirements.txt file with the packages that are needed for executing the code. To get a copy of our environment, one would have to run the following commands. First, run 'make create_environment' that will create a conda environment. Then, after switching into that environment, one would have to run 'make requirements' that will install the auto-generated required packages in the created environment. Finally, we provide a basic scrips that tests if torch, torchvision and timm are correctly installed and if cuda is available. One can run this with 'make test_core_packages'.
+We used conda and pip for managing our environment dependencies. The list of dependencies was auto-generated using pipreqs package which looks into our code and creates a requirements.txt file with the packages that are needed for executing the code. To get a copy of our environment, one would have to run the following commands. First, run 'make create_environment' that will create a conda environment. Then, after switching into that environment, one would have to run 'make requirements' that will install the auto-generated required packages in the created environment. Finally, we provide a basic script based on cookiecutter test_environment that tests the python version and  if torch, torchvision and timm are correctly installed. One can run this with 'make test_environment'.
 
 ### Question 5
 
@@ -164,7 +164,8 @@ We used conda and pip for managing our environment dependencies. The list of dep
 > *experiments.*
 > Answer:
 
-D 
+From the cookie cutter template we have filled out the data folder, using the raw and processed subfolders, using the raw folder for pulling data and the processed folder for the prepared data to be used by our models. Additionally, we created a test_imgs folder for testing. We used the models folder for storing the weights of the best-performing model.
+We also used the report folder to store the report and figures. The src folder contains the training and prediction pipelines, as well as the model structure and data-loading pipeline. Inside the src folder, we added a ml_utils folder for our optimizer and loss function. We followed the original Makefile and requirements list files. From the cookiecutter structure, we remove the docs and the references folders due to the simplicity of the project and the notebooks folder as we did not develop code on notebooks. We added a config folder to host all configuration files and a scripts folder for running a training script on the docker and additional utility scripts not crucial for training or prediction. Finally, we added an apps folder to host our fast API framework.
 
 ### Question 6
 
@@ -502,7 +503,7 @@ Another use of monitoring is being able to track relevant metrics, which is done
 >
 > Answer:
 
-ALL TEAM 
+During group work, we mainly used Julias account, which was linked to our project github repo for the triggers. In total we spent 10 $. The most expensive service was Compute Engine, surprisingly followed by Cloud Storage.
 
 ## Overall discussion of project
 
@@ -523,7 +524,12 @@ ALL TEAM
 >
 > Answer:
 
-ALL TEAM
+We made use of your nice figure, that you shared on slack and just deleted components, that we actually didn't apply to our project: ![figure](figures/mlops_overview.png).
+
+Our local setup was used to develop the code and to perform training on the HPC server. We setup version control, git for the code and dvc for the data. The code structure was initialized with the cookiecutter. Our environment setup was made with conda and pip requirements for our python code. The code loaded the training configuration, which is specified in .yaml-files, with Hydra. Experiment results are forwarded to Wandb, which is a online service. Therefore, all group members had access to the results. Of course, we used debugging to find bugs or understand what's going in our code. Common github actions are triggered, when pushing on main. 
+
+We connected a cloud build trigger to our repo, which builds the trainer docker image, when a push/merge is performed on the main branch. The docker imgage is saved in the container registry. The latest image is to spawn a container in the Compute Engine as well as in the Vertex AI for the training procedure. During training the data is accessed directly on the GCP Bucket. Output files such as model files should also be saved on the GCP bucket.
+The model has been deployed on Google Cloud function. A user can upload an image using curl, the image is processed and it gets back the prediction of the image.
 
 ### Question 26
 
@@ -537,7 +543,20 @@ ALL TEAM
 >
 > Answer:
 
-ALL TEAM
+The biggest challenges in the project are related to Google Cloud. We struggled with the following.
+* We only sometimes got access to GPU computing with on Compute Engine. The same command that worked 5 minutes ago, gave suddenly a "connection refused" error back.
+* With Vertex AI we never got access to GPU computing. We always got an error like "The following quota metrics exceed quota limits". Other groups experienced the same.
+* We didn't manage to proved the WANDB_API_KEY in a secure way to Vertex AI.
+* Google Cloud Functions is very slow on deployment. It can take up to 30 minutes until the code is actually online.
+
+We didn't manage to run data-relevant tests on github workflows. That's why we decided to run them locally before each push. Of course this is not a solution for larger scope projects.
+
+One group member had difficulties to dvc pull from gdrive, althogh access was granted (authorization issues).
+
+It took some time to get docker working with cuda and especially install the appropriate torch version in the image.
+
+FastAPI is completely new to us. So we spent quite some time on uploading in image with curl and getting it in the right format for our model inference.
+
 
 ### Question 27
 
@@ -554,4 +573,10 @@ ALL TEAM
 >
 > Answer:
 
-ALL TEAM
+s123540: github setup, cookiecutter, local fastapi, dockerfile, trigger setup to github
+s183527: local fastapi, unittest, model training code, 
+s222675: local fastapi, model prediction, unittests, model training code,
+ronjag: dockerfile, cloudbuild, connect gcp bucket to git via dvc, vertex ai, wandb sweep training, cloud functions
+dimara: dockerfile, config+hydra, vertex ai, training of different backbones
+
+

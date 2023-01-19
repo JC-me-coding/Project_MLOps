@@ -314,7 +314,7 @@ An example of a triggered unittest workflow can be seen here: https://github.com
 >
 > Answer:
 
-We used yaml configuration files, that are loaded with Hydra. We structure the config file so that it hosts model, data, hyperparameters, training, reproducability and general project parameters. To run the code, one needs to just run the script (e.g. 'python main.py') as the default config (config/train_config.yaml) is loaded inside the script. One can also specify a custom config by passing the path via argparse. The command would look like this: `python src/main.py --config <path-to-config>`.
+We used yaml configuration files, that are loaded with OmegaConf. We structure the config file so that it hosts model, data, hyperparameters, training, reproducability and general project parameters. To run the code, one needs to just run the script (e.g. 'python main.py') as the default config (config/train_config.yaml) is loaded inside the script. One can also specify a custom config by passing the path via argparse. The command would look like this: `python src/main.py --config <path-to-config>`.
 
 ### Question 13
 
@@ -526,7 +526,7 @@ During group work, we mainly used Julias account, which was linked to our projec
 
 We made use of your nice figure, that you shared on slack and just deleted components, that we actually didn't apply to our project: ![figure](figures/mlops_overview.png).
 
-Our local setup was used to develop the code and to perform training on the HPC server. We setup version control, git for the code and dvc for the data. The code structure was initialized with the cookiecutter. Our environment setup was made with conda and pip requirements for our python code. The code loaded the training configuration, which is specified in .yaml-files, with Hydra. Experiment results are forwarded to Wandb, which is a online service. Therefore, all group members had access to the results. Of course, we used debugging to find bugs or understand what's going in our code. Common github actions are triggered, when pushing on main. 
+Our local setup was used to develop the code and to perform training on the HPC server. We setup version control, git for the code and dvc for the data. The code structure was initialized with the cookiecutter. Our environment setup was made with conda and pip requirements for our python code. The code loaded the training configuration, which is specified in .yaml-files. Experiment results are forwarded to Wandb, which is a online service. Therefore, all group members had access to the results. Of course, we used debugging to find bugs or understand what's going in our code. Common github actions are triggered, when pushing on main. 
 
 We connected a cloud build trigger to our repo, which builds the trainer docker image, when a push/merge is performed on the main branch. The docker imgage is saved in the container registry. The latest image is to spawn a container in the Compute Engine as well as in the Vertex AI for the training procedure. During training the data is accessed directly on the GCP Bucket. Output files such as model files should also be saved on the GCP bucket.
 The model has been deployed on Google Cloud function. A user can upload an image using curl, the image is processed and it gets back the prediction of the image.
@@ -577,6 +577,6 @@ s123540: github setup, cookiecutter, local fastapi, dockerfile, trigger setup to
 s183527: local fastapi, unittest, model training code, 
 s222675: local fastapi, model prediction, unittests, model training code,
 ronjag: dockerfile, cloudbuild, connect gcp bucket to git via dvc, vertex ai, wandb sweep training, cloud functions
-dimara: dockerfile, config+hydra, vertex ai, training of different backbones
+dimara: dockerfile, config files, vertex ai, training of different backbones
 
 
